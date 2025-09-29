@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sbbsYellow: #ffd602;
+  --sbbsBlue: #00458e;
+  --sbbsFooterColor: #013366;
+  --sbbsWhite: #ffffff;
+  --sbbsRed: #fe0000;
+  --sbbsGray: #696969;
+  --sbbsBelge: #f8f9fa;
+  --sbbsCustomOrange: #ffa500;
+  --sbbsBlueLigth: #105eb0;
+  --sbbsGrayLight: #686868;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.sbbs-bg {
+  background-image: url("./Asset/Images/Bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
