@@ -5,7 +5,7 @@ export interface ICommunityBenefics {
   img: string;
 }
 
-type EventType =
+export type EventType =
   | "Tous"
   | "Networking"
   | "Formation"

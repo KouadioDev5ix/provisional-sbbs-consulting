@@ -119,15 +119,15 @@ export default function Offers() {
     },
     {
       name: "Formation équipes",
-      starter: "2 sessions",
-      packComplet: "Illimité",
-      premium: "Illimité + coaching",
+      starter: false,
+      packComplet: true,
+      premium: true,
     },
     {
       name: "Suivi consultant",
-      starter: "1 trimestre",
-      packComplet: "Mensuel",
-      premium: "Hebdomadaire",
+      starter: false,
+      packComplet: true,
+      premium: true,
     },
     {
       name: "Certification SBBS",

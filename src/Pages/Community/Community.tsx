@@ -1,11 +1,12 @@
 import { Check, Clock9, MapPin, Play } from "lucide-react";
 import structuration from "../../Asset/Icons/Structuration.png";
 import type {
+  EventType,
   ICommunityBenefics,
   ICommunityEventCard,
   IcommunityTeam,
 } from "../../Models/Interfaces/Community/community";
-import type { EventType } from "./T";
+// import type { EventType } from "./T";
 import { useState } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -161,12 +162,7 @@ export default function Community() {
    * Categories even type data
    */
 
-  const categories: EventType[] = [
-    "Tous",
-    "Networking",
-    "Formation",
-    "Business",
-  ];
+  const categories: EventType[] = ["Tous", "Networking", "Formation"];
   /**
    * Filter type variables
    */
