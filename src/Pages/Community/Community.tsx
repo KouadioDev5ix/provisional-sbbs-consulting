@@ -178,7 +178,7 @@ export default function Community() {
 
   return (
     <section className="w-full">
-      <div className="absolute bg-sbbsBlue h-[550px] md:h-[580px] w-full"></div>
+      <div className="absolute bg-sbbsBlue h-[580px] md:h-[580px] w-full"></div>
       {/* Content above  */}
       <div className="relative z-10 w-10/12 max-w-7xl mx-auto ">
         <div className="flex items-center justify-center px-4">
@@ -437,7 +437,7 @@ export default function Community() {
 
                 {/* Buttons */}
                 <div className="flex" onClick={openInscriptionModal}>
-                  <button className="flex-1 bg-sbbsYellow text-black  px-3 py-2 rounded-lg hover:bg-yellow-500 transition font-bold">
+                  <button className="flex-1 bg-sbbsYellow text-black px-3 py-2 rounded-lg hover:bg-yellow-500 transition font-bold">
                     S’inscrire
                   </button>
                 </div>
