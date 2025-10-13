@@ -1,12 +1,11 @@
-import { Check, Clock9, MapPin, Play } from "lucide-react";
+import { Check, Clock9, MapPin } from "lucide-react";
 import structuration from "../../Asset/Icons/Structuration.png";
+
 import type {
   EventType,
   ICommunityBenefics,
-  ICommunityEventCard,
   IcommunityTeam,
 } from "../../Models/Interfaces/Community/community";
-// import type { EventType } from "./T";
 import { useState } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -14,63 +13,82 @@ import { useEffect } from "react";
 import ButtonLoader from "../../Components/ButtonLoader/ButtonLoader";
 import toast from "react-hot-toast";
 import compagnieImage from "../../Asset/Images/Compagnie-name.jpeg";
+import { API_getEventList } from "../../Services/even.servce/Even.service";
+import type { API_Event_Response } from "../../types/even";
+import { Pagination } from "@mui/material";
+import { EventCardSkeleton } from "../../Components/EventCardSkeleton/EventCardSkeleton";
+import type { IEventSubscriber } from "../../types/eventSubscriber";
+import { API_subscriberRequest } from "../../Services/community.service/community.service";
+
+import testymonyVideo from "../../Asset/Videos/Présentation de l'école des affaires LA SOLOMON BETSALEEL BUSINESS SCHOOL SBBS.mp4";
+import { useTranslation } from "react-i18next";
 
 export default function Community() {
+  const { t } = useTranslation();
   const [selectedType, setSelectedType] = useState<EventType>("Tous");
+  const [eventDataIsLoading, setEventDataIsLoading] = useState<boolean>(false);
+  const [eventListData, setEventListData] = useState<API_Event_Response>();
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [pageQuery, setPageQuery] = useState({
+    page: 1,
+    size: 5,
+  });
+  const [actionRequestLoader, setActionRequestLoader] =
+    useState<boolean>(false);
+  const [formInputValue, setFormInputValue] = useState<IEventSubscriber>({
+    firstName: "",
+    lastName: "",
+    number: "",
+    placeOfResidence: "",
+    Profession: "",
+    mail: "",
+  });
+  const [requestHasError, setRequestHasError] = useState<boolean>(false);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  /**
-   * Open modal for dianostic request
-   */
-
-  const openInscriptionModal = (): void => {
-    setIsLoading(false);
-    (document.getElementById("inscription") as HTMLDialogElement).showModal();
-  };
-
-  const inscription = (): void => {
-    setIsLoading(true);
-    setTimeout(() => {
-      toast.success("Iscription éffectué avec succés");
-      (document.getElementById("inscription") as HTMLDialogElement).close();
-      setIsLoading(false);
-    }, 1000);
-  };
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const communityTeam: IcommunityTeam[] = [
     {
       id: 1,
-      enterpriseName: "BC Inc Companies",
-      shortDescription:
-        "lorem ispsum dolor site ketreum par insn lompe lorem ispsum dolor ",
+      enterpriseName: t(
+        "community.entrepreneurialElite.compagnie.compagnieName"
+      ),
+      shortDescription: t(
+        "community.entrepreneurialElite.compagnie.descripton"
+      ),
       image: compagnieImage,
     },
     {
       id: 2,
-      enterpriseName: "BC Inc Companies",
-      shortDescription:
-        "lorem ispsum dolor site ketreum par insn lompe lorem ispsum dolor ",
+      enterpriseName: t(
+        "community.entrepreneurialElite.compagnie.compagnieName"
+      ),
+      shortDescription: t(
+        "community.entrepreneurialElite.compagnie.descripton"
+      ),
       image: compagnieImage,
     },
     {
       id: 3,
-      enterpriseName: "BC Inc Companies",
-      shortDescription:
-        "lorem ispsum dolor site ketreum par insn lompe lorem ispsum dolor ",
+      enterpriseName: t(
+        "community.entrepreneurialElite.compagnie.compagnieName"
+      ),
+      shortDescription: t(
+        "community.entrepreneurialElite.compagnie.descripton"
+      ),
       image: compagnieImage,
     },
   ];
+
   /**
    * Community Features data
    */
-
-  const communityFeaturesList: string[] = [
-    "Networking de haut niveau entre dirigeants",
-    "Formations continues et masterclasses exclusives",
-    "Opportunités d'affaires et partenariats",
-    "Mentorat et partage d'expériences",
-  ];
+  const communityFeaturesList: string[] = t(
+    "community.omegaBusiness.omegaBusinessFeatures",
+    {
+      returnObjects: true,
+    }
+  ) as string[];
 
   /**
    * Community benefics data
@@ -79,82 +97,39 @@ export default function Community() {
   const communintyBenefits: ICommunityBenefics[] = [
     {
       id: 1,
-      label: "Networking Premium",
-      description:
-        "Connectez-vous avec des entrepreneurs ambitieux et créez des synergies business durables.",
+      label: t("community.communityBenefits.levels1.label"),
+      description: t("community.communityBenefits.levels1.description"),
       img: structuration,
     },
     {
       id: 2,
-      label: "Formation Continue",
-      description:
-        "Restez à la pointe avec des formations et masterclasses animées par des experts..",
+      label: t("community.communityBenefits.levels2.label"),
+      description: t("community.communityBenefits.levels2.description"),
       img: structuration,
     },
     {
       id: 3,
-      label: "Opportunités Business",
-      description:
-        "Développez votre chiffre d'affaires grâce aux opportunités partagées dans la communauté.",
+      label: t("community.communityBenefits.levels3.label"),
+      description: t("community.communityBenefits.levels3.description"),
       img: structuration,
     },
     {
       id: 4,
-      label: "Accélération & Mentorat",
-      description:
-        "Bénéficiez de l'expérience des membres seniors et accélérez votre développement.",
+      label: t("community.communityBenefits.levels4.label"),
+      description: t("community.communityBenefits.levels4.description"),
       img: structuration,
     },
     {
       id: 5,
-      label: "Rayonnement International",
-      description:
-        "Étendez votre influence au-delà des frontières avec notre réseau panafricain.",
+      label: t("community.communityBenefits.levels5.label"),
+      description: t("community.communityBenefits.levels5.description"),
       img: structuration,
     },
     {
       id: 6,
-      label: "Privilèges Exclusifs",
-      description:
-        "Accédez à des avantages négociés et des tarifs préférentiels.",
+      label: t("community.communityBenefits.levels6.label"),
+      description: t("community.communityBenefits.levels6.description"),
       img: structuration,
-    },
-  ];
-
-  /**
-   * Event card data
-   */
-
-  const events: ICommunityEventCard[] = [
-    {
-      id: 1,
-      type: "Networking",
-      title: "Leadership & Croissance",
-      location: "Sofitel Abidjan",
-      time: "18h30 - 22h00",
-      description:
-        "Masterclass animée par un expert international sur les stratégies de croissance rapide et durable.",
-      date: "15 SEPT",
-    },
-    {
-      id: 2,
-      type: "Networking",
-      title: "Leadership & Croissance ",
-      location: "Sofitel Abidjan",
-      time: "18h30 - 22h00",
-      description:
-        "Masterclass animée par un expert international sur les stratégies de croissance rapide et durable.",
-      date: "15 SEPT",
-    },
-    {
-      id: 3,
-      type: "Networking",
-      title: "Leadership & Croissance ",
-      location: "Sofitel Abidjan",
-      time: "18h30 - 22h00",
-      description:
-        "Masterclass animée par un expert international sur les stratégies de croissance rapide et durable.",
-      date: "15 SEPT",
     },
   ];
 
@@ -162,17 +137,113 @@ export default function Community() {
    * Categories even type data
    */
 
-  const categories: EventType[] = ["Tous", "Networking", "Formation"];
+  const categories: EventType[] = [
+    "Tous",
+    "Networking",
+    "Formation",
+    "Business",
+  ];
+
   /**
    * Filter type variables
    */
 
   const filteredEvents =
     selectedType === "Tous"
-      ? events
-      : events.filter((event) => event.type === selectedType);
+      ? eventListData?.ivents
+      : eventListData?.ivents?.filter((event) => event.type === selectedType);
 
+  /**
+   *
+   */
+  const getAllEventList = () => {
+    setEventDataIsLoading(true);
+    API_getEventList(pageQuery.page, pageQuery.size, "")
+      .then((response) => {
+        setEventListData(response.data);
+        setTotalPages(response.data.totalPages);
+        setEventDataIsLoading(false);
+      })
+      .catch((error) => {
+        setEventDataIsLoading(false);
+        console.error("error", error);
+      });
+  };
+
+  // console.log("result===>", eventDataIsLoading);
+
+  /**
+   *
+   * @param _
+   * @param value
+   */
+
+  const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
+    setPageQuery((prev) => ({ ...prev, page: value }));
+    getAllEventList();
+  };
+
+  /**
+   *
+   */
+  const clearFormAfterRequest = (): void => {
+    setFormInputValue({
+      firstName: "",
+      lastName: "",
+      number: "",
+      placeOfResidence: "",
+      Profession: "",
+      mail: "",
+    });
+  };
+
+  const openInscriptionModal = (): void => {
+    setActionRequestLoader(false);
+    setRequestHasError(false);
+    (document.getElementById("inscription") as HTMLDialogElement).showModal();
+  };
+
+  const closeInscriptionModal = (): void => {
+    setRequestHasError(false);
+    (document.getElementById("inscription") as HTMLDialogElement).close();
+  };
+
+  const handleSubscribeToEvent = () => {
+    setActionRequestLoader(true);
+    const inputFieldiSEmpty = Object.values(formInputValue).some(
+      (valure) => valure.trim() === ""
+    );
+    if (inputFieldiSEmpty) {
+      setActionRequestLoader(false);
+      setRequestHasError(true);
+      setErrorMessage("Veuillez renseigner tous les champs svp !");
+      return;
+    }
+    API_subscriberRequest(formInputValue)
+      .then((response) => {
+        clearFormAfterRequest();
+        (document.getElementById("inscription") as HTMLDialogElement).close();
+        setActionRequestLoader(false);
+        setRequestHasError(false);
+        toast.success(response.data.message);
+      })
+      .catch((error) => {
+        setRequestHasError(true);
+        setActionRequestLoader(false);
+        if (error.message.data) {
+          setErrorMessage(error.response.data.message);
+        } else {
+          setErrorMessage("Une erreur s'est produite");
+        }
+        console.error("error while creating user", error);
+      });
+  };
+
+  /**
+   *
+   */
   useEffect(() => {
+    getAllEventList();
     Aos.init({ duration: 1500 });
   }, []);
 
@@ -187,14 +258,14 @@ export default function Community() {
               data-aos="zoom-in"
               className="pt-10 text-white font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
             >
-              Communauté Omega Business
+              {t("community.hero.title")}
             </h1>
 
             <p
               data-aos="zoom-in"
               className="mt-4 text-sbbsYellow text-xs sm:text-sm md:text-base"
             >
-              Le réseau d'excellence des entrepreneurs SBBS
+              {t("community.hero.shortText")}
             </p>
 
             <div className="max-w-lg mx-auto mt-7">
@@ -202,9 +273,7 @@ export default function Community() {
                 data-aos="zoom-in"
                 className="mt-4 text-gray-200 text-xs sm:text-sm md:text-base"
               >
-                Rejoignez un écosystème dynamique d'entrepreneurs certifiés qui
-                partagent, grandissent et réussissent ensemble. Plus qu'une
-                communauté, c'est votre accélérateur de croissance.
+                {t("community.hero.subtitle")}
               </p>
             </div>
           </div>
@@ -220,7 +289,7 @@ export default function Community() {
               </h1>
             </div>
             <p className="text-center text-lg font-bold text-sbbsYellow">
-              + membres actifs
+              {t("community.hero.btn.btn1")}
             </p>
           </div>
           {/* + Événements par an */}
@@ -231,7 +300,7 @@ export default function Community() {
               </h1>
             </div>
             <p className="text-center text-lg font-bold text-sbbsYellow">
-              + Événements par an
+              {t("community.hero.btn.btn2")}
             </p>
           </div>
           {/* +Business généré */}
@@ -242,7 +311,7 @@ export default function Community() {
               </h1>
             </div>
             <p className="text-center text-lg font-bold text-sbbsYellow">
-              + Business généré
+              {t("community.hero.btn.btn3")}
             </p>
           </div>
           {/* Pays représentés */}
@@ -253,7 +322,7 @@ export default function Community() {
               </h1>
             </div>
             <p className="text-center text-lg font-bold text-sbbsYellow">
-              Pays représentés
+              {t("community.hero.btn.btn4")}
             </p>
           </div>
         </div>
@@ -268,12 +337,17 @@ export default function Community() {
             <div>
               <div
                 data-aos="zoom-in"
-                className="w-64 md:w-64 rounded-lg bg-sbbsBlue cursor-pointer"
+                className="w-64 md:w-64 rounded-lg  cursor-pointer"
               >
-                <div className="flex items-center justify-center p-6">
-                  <button className="flex items-center justify-center bg-sbbsYellow rounded-full h-14 w-14">
-                    <Play />
-                  </button>
+                <div className="w-64 md:w-full  h-44 cursor-pointer">
+                  <video width="640" controls className=" rounded-md shadow-sm">
+                    <source src={testymonyVideo} type="video/mp4" />
+                  </video>
+                  <div>
+                    <span className="text-gray-500 font-normal">
+                      {t("community.omegaBusiness.video.title")}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -283,16 +357,14 @@ export default function Community() {
                 data-aos="zoom-in"
                 className="text-lg lg:text-xl font-bold text-sbbsBlue mb-4"
               >
-                Découvrez Omega Business
+                {t("community.omegaBusiness.title")}
               </h1>
               <div className="max-w-lg">
                 <p
                   data-aos="zoom-in"
                   className="w-full text-sbbsGrayLight text-md font-semibold mb-4"
                 >
-                  Une communauté exclusive où les entrepreneurs certifiés SBBS
-                  se retrouvent pour partager leurs expériences, développer des
-                  synergies et accélérer leur croissance.
+                  {t("community.omegaBusiness.subtitle")}
                 </p>
               </div>
 
@@ -318,23 +390,23 @@ export default function Community() {
         </div>
       </div>
       {/* Les avantages de la communauté */}
-      <div className="w-10/12 max-w-3xl mx-auto">
+      <div className="w-10/12 max-w-4xl mx-auto">
         <div className="flex items-center justify-center my-7">
           <div>
             <h2
               data-aos="zoom-in"
               className="text-2xl md:text-3xl font-extrabold text-sbbsBlue text-center"
             >
-              Les avantages de la communauté
+              {t("community.communityBenefits.title")}
             </h2>
             <p data-aos="zoom-in" className="mt-2 text-center text-gray-600">
-              Un écosystème complet pour votre croissance continue
+              {t("community.communityBenefits.subtitle")}
             </p>
           </div>
         </div>
         {/* Les avantages de la communauté */}
 
-        <div className="mt-10 w-full grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 w-full grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
           {/* Bloc */}
           {communintyBenefits.map((item) => (
             <div
@@ -372,10 +444,10 @@ export default function Community() {
               data-aos="zoom-in"
               className="text-2xl md:text-3xl font-extrabold text-sbbsBlue text-center"
             >
-              Agenda des événements
+              {t("community.calendarEvents.title")}
             </h2>
             <p data-aos="zoom-in" className="mt-2 text-gray-600">
-              Ne manquez aucune opportunité de croissance et de networking
+              {t("community.calendarEvents.subtitle")}
             </p>
           </div>
         </div>
@@ -398,52 +470,94 @@ export default function Community() {
         </div>
 
         {/* Event Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-10">
-          {filteredEvents.map((event) => (
-            <div
-              data-aos="zoom-in"
-              key={event.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden"
-            >
-              {/* Header color block */}
-              <div className="bg-sbbsBlue p-4 relative">
-                <span className="absolute top-3 right-3 bg-white bg-sbbsBlue font-bold text-xs rounded-md px-2 py-1">
-                  {event.date}
-                </span>
-                <span className="bg-sbbsYellow text-xs px-3 py-1 rounded-full font-medium">
-                  {event.type}
-                </span>
-              </div>
-
-              {/* Content */}
-              <div className="p-2">
-                <h3 className="font-bold text-lg text-gray-900 mb-2 text-nowrap">
-                  {event.title}
-                </h3>
-                <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
-                  <span className="text-nowrap flex items-center">
-                    {" "}
-                    <MapPin className="w-4 h-4" />{" "}
-                    <span className="text-xs font-bold">{event.location}</span>
-                  </span>
-                  <span className="text-nowrap flex items-center">
-                    <Clock9 className="w-4 h-4" />
-                    <span className="text-xs font-bold">{event.time}</span>
-                  </span>
+        <div className="">
+          {eventListData?.ivents?.length === 0 || eventDataIsLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-10">
+              {[1, 2, 3].map((i) => (
+                <div>
+                  <EventCardSkeleton key={i} />
                 </div>
-                <p className="text-sm text-gray-600 mb-4">
-                  {event.description}
-                </p>
-
-                {/* Buttons */}
-                <div className="flex" onClick={openInscriptionModal}>
-                  <button className="flex-1 bg-sbbsYellow text-black px-3 py-2 rounded-lg hover:bg-yellow-500 transition font-bold">
-                    S’inscrire
-                  </button>
-                </div>
-              </div>
+              ))}
             </div>
-          ))}
+          ) : null}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-10">
+          {filteredEvents?.length !== 0 && !eventDataIsLoading
+            ? filteredEvents?.map((event) => (
+                <div
+                  // data-aos="zoom-in"
+                  key={event.id}
+                  className=" bg-white rounded-xl shadow-md overflow-hidden"
+                >
+                  {/* Header color block */}
+                  <div className="bg-sbbsBlue p-4 relative">
+                    <span className="absolute top-3 right-3 bg-white bg-sbbsBlue font-bold text-xs rounded-md px-2 py-1">
+                      {event.date}
+                    </span>
+                    <span className="bg-sbbsYellow text-xs px-3 py-1 rounded-full font-medium">
+                      {event.type}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-2">
+                    <h3 className="font-bold text-lg text-gray-900 mb-2 text-nowrap">
+                      {event.title}
+                    </h3>
+                    <div className=" flex items-center gap-2 text-sm text-gray-600 mb-1">
+                      <span className="text-nowrap flex items-center">
+                        {" "}
+                        <MapPin className="w-4 h-4" />{" "}
+                        <span className="text-xs font-bold">
+                          {event.location}
+                        </span>
+                      </span>
+                      <div className="flex items-center">
+                        <Clock9 className="w-4 h-4" />
+                        <div>
+                          <span className="text-xs font-bold">
+                            {" "}
+                            {event.time}
+                          </span>
+                        </div>{" "}
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {event.description}
+                    </p>
+
+                    {/* Buttons */}
+                    <div className="flex" onClick={openInscriptionModal}>
+                      <button className="flex-1 bg-sbbsYellow text-black px-3 py-2 rounded-lg hover:bg-yellow-500 transition font-bold">
+                        S’inscrire
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            : null}
+        </div>
+
+        <div className="flex items-center justify-center">
+          <div>
+            {eventListData?.ivents?.length === 0 && !eventDataIsLoading ? (
+              <span className="text-gray-600 font-bold text-sm">
+                Aucun évenement diponible pour le moment
+              </span>
+            ) : null}
+          </div>
+        </div>
+
+        {/* PAGINATIONS */}
+        <div className="flex items-center justify-center mt-7 pb-5">
+          <Pagination
+            count={totalPages}
+            page={pageQuery.page}
+            onChange={handlePageChange}
+            variant="outlined"
+            shape="rounded"
+          />
         </div>
       </div>
       {/* Rejoignez l'élite entrepreneuriale */}
@@ -451,10 +565,10 @@ export default function Community() {
         <div className="flex items-center justify-center w-full h-fit ">
           <div className="text-center max-w-3xl py-7">
             <h1
-              data-aos="zoom-in"
+              // data-aos="zoom-in"
               className="pt-10 text-center text-sbbsBlue font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
             >
-              Decouvrez l'élite entrepreneuriale
+              {t("community.entrepreneurialElite.title")}
             </h1>
 
             <div className="max-w-xl mx-auto">
@@ -462,7 +576,7 @@ export default function Community() {
                 data-aos="zoom-in"
                 className="mt-3 text-gray-600 text-xs sm:text-sm md:text-base"
               >
-                Faites partie d'un réseau exclusif qui propulse votre succès
+                {t("community.entrepreneurialElite.subtitle")}
               </p>
             </div>
           </div>
@@ -474,7 +588,7 @@ export default function Community() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-5">
             {communityTeam.map((member) => (
               <div
-                data-aos="zoom-in"
+                // data-aos="zoom-in"
                 key={member.id}
                 className="bg-white rounded-xl shadow-md overflow-hidden text-center"
               >
@@ -509,6 +623,12 @@ export default function Community() {
               Inscrivez vous à notre événement
             </h1>
           </div>
+          <div>
+            {requestHasError && (
+              <span className="text-red-600 text-xs">{errorMessage}</span>
+            )}
+          </div>
+
           {/* CONTENT */}
           <div className={"h-fit"}>
             <div className="mt-4">
@@ -519,13 +639,13 @@ export default function Community() {
                     <span className="label-text font-medium -mb-1 ">Nom</span>
                   </label>
                   <input
-                    // value={inputs.lastName}
-                    // onChange={(e) => {
-                    //   setInputs((previousState) => ({
-                    //     ...previousState,
-                    //     lastName: e.target.value,
-                    //   }));
-                    // }}
+                    value={formInputValue.lastName}
+                    onChange={(e) => {
+                      setFormInputValue((previousState) => ({
+                        ...previousState,
+                        lastName: e.target.value,
+                      }));
+                    }}
                     type="text"
                     placeholder="Ex: Kouadio"
                     className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md`}
@@ -538,8 +658,13 @@ export default function Community() {
                     </span>
                   </label>
                   <input
-                    // value={inputs.firstName}
-
+                    value={formInputValue.firstName}
+                    onChange={(e) => {
+                      setFormInputValue((previousState) => ({
+                        ...previousState,
+                        firstName: e.target.value,
+                      }));
+                    }}
                     type="text"
                     placeholder="Ex: Kouadio Alfred"
                     className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md `}
@@ -554,13 +679,13 @@ export default function Community() {
                   </span>
                 </label>
                 <input
-                  // value={inputs.userName}
-                  // onChange={(e) => {
-                  //   setInputs((previousState) => ({
-                  //     ...previousState,
-                  //     userName: e.target.value,
-                  //   }));
-                  // }}
+                  value={formInputValue.Profession}
+                  onChange={(e) => {
+                    setFormInputValue((previousState) => ({
+                      ...previousState,
+                      Profession: e.target.value,
+                    }));
+                  }}
                   type="text"
                   placeholder="Entrepreneur"
                   className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md`}
@@ -577,13 +702,13 @@ export default function Community() {
                 </label>
                 <input
                   type="text"
-                  // value={inputs.city}
-                  // onChange={(e) => {
-                  //   setInputs((previousState) => ({
-                  //     ...previousState,
-                  //     city: e.target.value,
-                  //   }));
-                  // }}
+                  value={formInputValue.placeOfResidence}
+                  onChange={(e) => {
+                    setFormInputValue((previousState) => ({
+                      ...previousState,
+                      placeOfResidence: e.target.value,
+                    }));
+                  }}
                   placeholder="Ex: Abidjan"
                   className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md`}
                 />
@@ -598,13 +723,13 @@ export default function Community() {
                   </label>
                   <input
                     type="text"
-                    // value={inputs.number}
-                    // onChange={(e) => {
-                    //   setInputs((previousState) => ({
-                    //     ...previousState,
-                    //     number: e.target.value,
-                    //   }));
-                    // }}
+                    value={formInputValue.number}
+                    onChange={(e) => {
+                      setFormInputValue((previousState) => ({
+                        ...previousState,
+                        number: e.target.value,
+                      }));
+                    }}
                     placeholder="Ex: 05 85 13 22 12"
                     className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md`}
                   />
@@ -616,13 +741,13 @@ export default function Community() {
                     </span>
                   </label>
                   <input
-                    // value={inputs.mail}
-                    // onChange={(e) => {
-                    //   setInputs((previousState) => ({
-                    //     ...previousState,
-                    //     mail: e.target.value,
-                    //   }));
-                    // }}
+                    value={formInputValue.mail}
+                    onChange={(e) => {
+                      setFormInputValue((previousState) => ({
+                        ...previousState,
+                        mail: e.target.value,
+                      }));
+                    }}
                     type="text"
                     placeholder="Ex: kouadio@gmail.com"
                     className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md`}
@@ -634,23 +759,26 @@ export default function Community() {
 
           <div className="flex items-center gap-4 pt-7">
             <button
-              disabled={isLoading}
+              disabled={actionRequestLoader}
               className={`${
-                isLoading ? "cursor-not-allowed" : ""
+                actionRequestLoader ? "cursor-not-allowed" : ""
               } w-full h-10 bg-sbbsBlue rounded-md text-white`}
-              onClick={inscription}
+              onClick={handleSubscribeToEvent}
             >
-              {/* {isLoading ? } */}
-              {isLoading ? (
+              {/* {actionRequestLoader ? } */}
+              {actionRequestLoader ? (
                 <span className="flex justify-center">
                   <ButtonLoader />
                 </span>
               ) : (
-                "Valider"
+                " S 'inscrire"
               )}
             </button>
 
-            <button className={`w-full h-10 bg-gray-200 rounded-md text-black`}>
+            <button
+              className={`w-full h-10 bg-gray-200 rounded-md text-black`}
+              onClick={closeInscriptionModal}
+            >
               Annuler
             </button>
           </div>

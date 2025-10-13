@@ -8,6 +8,7 @@ import Community from "../Pages/Community/Community";
 import Contact from "../Pages/Contact/Contact";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import Blog from "../Pages/Blog/Blog";
+import BlogDetail from "../Pages/BlogDetail/BlogDetail";
 
 export const AppRouter = createHashRouter([
   {
@@ -79,6 +80,14 @@ export const AppRouter = createHashRouter([
     element: (
       <AppLayout>
         <Blog />
+      </AppLayout>
+    ),
+  },
+  {
+    path: "blog/:id",
+    element: (
+      <AppLayout>
+        <BlogDetail />
       </AppLayout>
     ),
   },

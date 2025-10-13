@@ -1,96 +1,42 @@
 import type { IBlog } from "../../Models/Interfaces/Blog/blog";
-
 import image from "../../Asset/Images/517724952_1077928814489345_488813582903415815_n-1024x683.jpg";
-import { Pagination } from "@mui/material";
-
+import testymonyVideo from "../../Asset/Videos/Présentation de l'école des affaires LA SOLOMON BETSALEEL BUSINESS SCHOOL SBBS.mp4";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Blog() {
+  const { t } = useTranslation();
   const blogData: IBlog[] = [
     {
+      id: 1,
       image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, ",
+      tilte: t("blog.articles.card1.tiltle"),
+      date: t("blog.articles.card1.date"),
+      description: t("blog.articles.card1.description"),
     },
     {
+      id: 2,
       image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      tilte: t("blog.articles.card1.tiltle"),
+      date: t("blog.articles.card1.date"),
+      description: t("blog.articles.card1.description"),
     },
     {
+      id: 3,
       image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      tilte: t("blog.articles.card1.tiltle"),
+      date: t("blog.articles.card1.date"),
+      description: t("blog.articles.card1.description"),
     },
     {
+      id: 4,
       image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    },
-    {
-      image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    },
-    {
-      image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    },
-    {
-      image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    },
-    {
-      image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    },
-    {
-      image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    },
-    {
-      image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    },
-    {
-      image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    },
-    {
-      image: image,
-      tilte: "Sed do eiusmod tempor incididunt ",
-      date: "20 juillet 2025",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      tilte: t("blog.articles.card1.tiltle"),
+      date: t("blog.articles.card1.date"),
+      description: t("blog.articles.card1.description"),
     },
   ];
 
@@ -111,7 +57,7 @@ export default function Blog() {
               data-aos="zoom-in"
               className="pt-20 text-white font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
             >
-              Blog & Ressources
+              {t("blog.hero.title")}
             </h1>
 
             <div className="max-w-2xl mx-auto mt-7">
@@ -119,17 +65,16 @@ export default function Blog() {
                 data-aos="zoom-in"
                 className="mt-4 text-gray-200 text-xs sm:text-sm md:text-base"
               >
-                Découvrez nos articles, guides et études de cas pour transformer
-                votre entreprise
+                {t("blog.hero.shortText")}
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="pt-56 max-w-7xl w-10/12 mx-auto">
+      <div className="pt-32 md:pt-44  max-w-7xl w-10/12 mx-auto">
         <h1 className="text-2xl font-extrabold text-sbbsBlue">
-          Nos articles récents
+          {t("blog.hero.Article.title")}
         </h1>
 
         {/* CONTENT */}
@@ -141,36 +86,89 @@ export default function Blog() {
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer"
             >
               {/* Image Placeholder */}
-              <div className="w-full h-56 rounded-lg  p-2">
-                <img
-                  src={blog.image}
-                  alt=""
-                  className="w-full h-56 object-cover rounded-lg "
-                />
-              </div>
 
+              <Link to={`/blog/${blog.id}`} key={blog.id} state={{ blog }}>
+                <div className="w-full h-56 rounded-lg  p-2">
+                  <img
+                    src={blog.image}
+                    alt=""
+                    className="w-full h-56 object-cover rounded-lg "
+                  />
+                </div>
+              </Link>
               <div className="p-2">
                 <h3 className="font-bold pt-4">{blog.date}</h3>
                 <p className="text-sbbsBlue text-sm font-bold mb-2">
                   {blog.tilte}
                 </p>
-                <p className="text-gray-600 text-sm">{blog.description}</p>
+                <p className="text-gray-600 text-sm truncate">
+                  {blog.description}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </div>
+      <div className="my-10 max-w-7xl w-10/12 mx-auto">
+        <hr />
 
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+          <div
+            data-aos="zoom-in"
+            className="w-72 md:w-full  h-44 cursor-pointer"
+          >
+            <video width="640" controls className=" rounded-md shadow-sm">
+              <source src={testymonyVideo} type="video/mp4" />
+            </video>
+
+            <div>
+              <span className="text-gray-500 font-normal">
+                {t("blog.video.title")}
+              </span>
+            </div>
+          </div>
+
+          <div
+            data-aos="zoom-in"
+            className="w-72 md:w-full  h-44 cursor-pointer"
+          >
+            <video width="640" controls className=" rounded-md shadow-sm">
+              <source src={testymonyVideo} type="video/mp4" />
+            </video>
+
+            <div>
+              <span className="text-gray-500 font-normal">
+                {t("blog.video.title")}
+              </span>
+            </div>
+          </div>
+
+          <div
+            data-aos="zoom-in"
+            className="w-72  md:w-full  h-44 cursor-pointer"
+          >
+            <video width="640" controls className=" rounded-md shadow-sm">
+              <source src={testymonyVideo} type="video/mp4" />
+            </video>
+
+            <div>
+              <span className="text-gray-500 font-normal">
+                {t("blog.video.title")}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* PAGINATIONS */}
-      <div className="flex justify-center my-7">
+      {/* <div className="flex justify-center my-7">
         <Pagination
           count={1}
           page={1}
-          // onChange={handlePageChange}
+          onChange={handlePageChange}
           variant="outlined"
           shape="rounded"
         />
-      </div>
+      </div> */}
     </section>
   );
 }

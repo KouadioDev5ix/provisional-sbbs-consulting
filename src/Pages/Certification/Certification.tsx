@@ -11,86 +11,87 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import QurestionComponent from "../../Components/QuestionComponent/QuestionComponent";
+import { useTranslation } from "react-i18next";
 
 export default function Certification() {
-  const certificationFeaturesList: string[] = [
-    "Crédibilité accrue auprès des partenaires et investisseurs",
-    "Benchmark objectif avec les entreprises de votre secteur",
-    "Identification claire des axes d'amélioration",
-    "Badge et certificat à afficher sur vos supports",
-    "Accès privilégié à la communauté Omega Business",
-  ];
+  const { t } = useTranslation();
+
+  const certificationFeaturesList: string[] = t(
+    "certification.certificationSBBS.fearturesListes",
+    {
+      returnObjects: true,
+    }
+  ) as string[];
 
   const levels: Ilevels[] = [
     {
       id: 1,
-      title: "SBBS-1 Alerte",
-      description:
-        "Dysfonctionnement global nécessitant une intervention urgente",
+      title: t("certification.certificationSBBS.levels1.title"),
+      description: t("certification.certificationSBBS.levels1.description"),
       color: "bg-red-500",
     },
     {
       id: 2,
-      title: "SBBS-2 Précaire",
-      description: "Risques importants, structure fragile à consolider",
+      title: t("certification.certificationSBBS.levels2.title"),
+      description: t("certification.certificationSBBS.levels2.description"),
       color: "bg-orange-400",
     },
     {
       id: 3,
-      title: "SBBS-3 Fonctionnel",
-      description: "Fragilité organisationnelle, bases à renforcer",
+      title: t("certification.certificationSBBS.levels3.title"),
+      description: t("certification.certificationSBBS.levels3.description"),
       color: "bg-yellow-400",
     },
     {
       id: 4,
-      title: "SBBS-4 Structuré",
-      description: "Structuration moyenne, potentiel de croissance",
+      title: t("certification.certificationSBBS.levels4.title"),
+      description: t("certification.certificationSBBS.levels4.description"),
       color: "bg-green-400",
     },
     {
       id: 5,
-      title: "SBBS-5 Avancé",
-      description: "Maturité avancée, performance confirmée",
+      title: t("certification.certificationSBBS.levels5.title"),
+      description: t("certification.certificationSBBS.levels5.description"),
       color: "bg-green-500",
     },
     {
       id: 6,
-      title: "SBBS-6 Élite",
-      description: "Entreprise solide et autonome, excellence reconnue",
+      title: t("certification.certificationSBBS.levels6.title"),
+      description: t("certification.certificationSBBS.levels6.description"),
       color: "bg-green-600",
     },
   ];
 
   const criterias: ICriterias[] = [
     {
-      criteria: "Organisation & Gouvernance",
+      criteria: t("certification.criteria.tableBody.A.criteria"),
       weight: "20%",
-      indicators: "Organigramme, processus documentés, répartition des rôles",
+      indicators: t("certification.criteria.tableBody.A.indicators"),
     },
     {
-      criteria: "Gestion Financière",
+      criteria: t("certification.criteria.tableBody.B.criteria"),
       weight: "20%",
-      indicators: "Comptabilité, trésorerie, rentabilité, tableaux de bord",
+      indicators: t("certification.criteria.tableBody.B.indicators"),
     },
     {
-      criteria: "Performance Commerciale",
+      criteria: t("certification.criteria.tableBody.C.criteria"),
       weight: "20%",
-      indicators: "Pipeline de vente, taux de conversion, satisfaction client",
+      indicators: t("certification.criteria.tableBody.C.indicators"),
     },
     {
-      criteria: "Ressources Humaines",
+      criteria: t("certification.criteria.tableBody.D.criteria"),
       weight: "15%",
-      indicators: "Compétences, formation, motivation, turnover",
+      indicators: t("certification.criteria.tableBody.D.indicators"),
     },
     {
-      criteria: "Innovation & Digital",
+      criteria: t("certification.criteria.tableBody.E.criteria"),
       weight: "15%",
-      indicators: "Outils digitaux, automatisation, innovation produit",
+      indicators: t("certification.criteria.tableBody.E.indicators"),
     },
     {
-      criteria: "Conformité & Qualité",
+      criteria: t("certification.criteria.tableBody.F.criteria"),
       weight: "10%",
-      indicators: "Normes respectées, certifications, contrôle qualité",
+      indicators: t("certification.criteria.tableBody.F.indicators"),
     },
   ];
 
@@ -108,22 +109,19 @@ export default function Certification() {
             data-aos="zoom-in"
             className="text-white font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
           >
-            Certification & Notation SBBS
+            {t("certification.hero.title")}
           </h1>
 
           <p
             data-aos="zoom-in"
             className="mt-4 text-sbbsYellow text-xs sm:text-sm md:text-base"
           >
-            La reconnaissance de l'excellence entrepreneuriale
+            {t("certification.hero.shortText")}
           </p>
 
           <div data-aos="zoom-in" className="max-w-lg mx-auto">
             <p className="mt-4 text-gray-200 text-xs sm:text-sm md:text-base">
-              Notre système de certification évalue et valorise le niveau de
-              maturité organisationnelle de votre entreprise. Rejoignez l'élite
-              des entreprises certifiées SBBS et distinguez-vous sur votre
-              marché.
+              {t("certification.hero.subtitle")}
             </p>
           </div>
 
@@ -134,15 +132,15 @@ export default function Certification() {
           >
             <button className=" flex items-center justify-center gap-2 bg-sbbsBlueLigth text-sbbsWhite font-semibold text-sm md:text-base w-fit h-10 rounded-full shadow-md hover:opacity-90 transition px-4">
               <img src={cup} alt="" className="w-4 h-4" />
-              Certification reconnue
+              {t("certification.hero.btn.btn1")}
             </button>
             <button className=" flex items-center justify-center gap-2 bg-sbbsBlueLigth text-sbbsWhite font-semibold text-sm md:text-base w-fit h-10 rounded-full shadow-md hover:opacity-90 transition px-4">
-              <img src={Growth} alt="" className="w-4 h-4" />6 niveaux
-              d'excellence
+              <img src={Growth} alt="" className="w-4 h-4" />
+              {t("certification.hero.btn.btn2")}
             </button>
             <button className=" flex items-center justify-center gap-2 bg-sbbsBlueLigth text-sbbsWhite font-semibold text-sm md:text-base w-fit h-10 rounded-full shadow-md hover:opacity-90 transition px-4">
               <img src={Evaluation} alt="" className="w-4 h-4" />
-              Évaluation objective
+              {t("certification.hero.btn.btn3")}
             </button>
           </div>
         </div>
@@ -157,15 +155,14 @@ export default function Certification() {
                 data-aos="zoom-in"
                 className="text-xl md:text-3xl font-extrabold text-sbbsBlue text-center"
               >
-                Un système d'évaluation complet
+                {t("certification.evaluationSystem.title")}
               </h2>
               <div className="max-w-lg mx-auto">
                 <p
                   data-aos="zoom-in"
                   className="mt-2 text-gray-600 text-center"
                 >
-                  La notation SBBS est bien plus qu'un simple score : c'est un
-                  outil de pilotage et de valorisation de votre entreprise
+                  {t("certification.evaluationSystem.subtitle")}
                 </p>
               </div>
             </div>
@@ -176,17 +173,14 @@ export default function Certification() {
               data-aos="zoom-in"
               className="text-lg lg:text-xl font-bold text-sbbsBlue mb-4"
             >
-              Pourquoi obtenir la certification <br /> SBBS ?
+              {t("certification.certificationSBBS.title")}
             </h1>
             <div className="max-w-lg">
               <p
                 data-aos="zoom-in"
                 className="w-full text-sbbsGrayLight text-md font-semibold mb-4"
               >
-                La certification SBBS est le reflet objectif de la maturité
-                organisationnelle de votre entreprise. Elle évalue votre
-                performance sur 6 dimensions clés et vous positionne sur une
-                échelle reconnue par l'écosystème entrepreneurial africain.
+                {t("certification.certificationSBBS.subtitle")}
               </p>
             </div>
 
@@ -216,11 +210,13 @@ export default function Certification() {
         <div className="flex items-center justify-center  ">
           <div data-aos="zoom-in" className="">
             <h1 className=" text-sbbsBlue font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl">
-              Les 6 niveaux de certification
+              {t("certification.certificationSBBS.levelsOfCertification.title")}
             </h1>
 
             <p className="mt-4 text-sbbsGrayLight text-xs sm:text-sm md:text-base">
-              Chaque niveau représente un stade de maturité organisationnelle
+              {t(
+                "certification.certificationSBBS.levelsOfCertification.subtitle"
+              )}
             </p>
           </div>
         </div>
@@ -239,29 +235,29 @@ export default function Certification() {
             </div>
           ))}
         </div>
+
         {/* Table */}
         <div className="overflow-x-auto mt-10 border rounded-lg  border-gray-200">
           <table className="w-full border-collapse rounded-lg overflow-hidden shadow-lg">
             <thead>
               <tr className="bg-sbbsBlue text-white">
-                <th className="p-3 text-left">Critères d'Évaluation</th>
-                <th className="p-3 text-left">Pondération</th>
-                <th className="p-3 text-left">Indicateurs Clés</th>
+                <th className="p-3 text-left">
+                  {t("certification.criteria.tableHead.evaluationCriteria")}
+                </th>
+                <th className="p-3 text-left">
+                  {t("certification.criteria.tableHead.Weighting")}
+                </th>
+                <th className="p-3 text-left">
+                  {t("certification.criteria.tableHead.keyIndicators")}
+                </th>
               </tr>
             </thead>
             <tbody>
               {criterias.map((item, index) => (
                 <tr key={index} className={`bg-white border-b`}>
                   <td className="p-3 font-medium">{item.criteria}</td>
-                  {/* <td className="p-3 text-green-600 font-semibold">
-                    {item.weight}
-                  </td> */}
 
-                  <td
-                    className={`p-3
-                  
-                    `}
-                  >
+                  <td className={`p-3`}>
                     <span
                       className={`p-1
                       ${
@@ -292,10 +288,10 @@ export default function Certification() {
                 data-aos="zoom-in"
                 className="text-xl md:text-3xl font-extrabold text-sbbsBlue text-center"
               >
-                Simulateur de notation
+                {t("certification.ratingSimulator.title")}
               </h2>
               <p data-aos="zoom-in" className="mt-2 text-sbbsGrayLight">
-                Chaque niveau représente un stade de maturité organisationnelle
+                {t("certification.ratingSimulator.subtitle")}
               </p>
             </div>
           </div>
@@ -315,7 +311,7 @@ export default function Certification() {
               data-aos="zoom-in"
               className="pt-10 text-center text-sbbsBlue font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
             >
-              Ils ont progressé avec SBBS
+              {t("certification.Testymonial.titlte")}
             </h1>
 
             <div className="max-w-4xl mx-auto mb-10">
@@ -323,7 +319,7 @@ export default function Certification() {
                 data-aos="zoom-in"
                 className="mt-2 text-gray-600 text-xs sm:text-sm md:text-base"
               >
-                Découvrez les parcours de certification de nos clients
+                {t("certification.Testymonial.subtitle")}
               </p>
             </div>
 
@@ -335,10 +331,10 @@ export default function Certification() {
                     <div className="w-9 h-9 rounded-full bg-sbbsBlue"></div>
                     <div>
                       <h1 className="text-left text-sbbsYellow font-bold">
-                        TechInnov CI
+                        {t("certification.Testymonial.card1.compagnieName")}
                       </h1>
                       <p className="text-xs text-sbbsGrayLight text-nowrap">
-                        Secteur : Technologies - 25 employés
+                        {t("certification.Testymonial.card1.sector")}
                       </p>
                     </div>
                   </div>
@@ -349,10 +345,7 @@ export default function Certification() {
                       data-aos="zoom-in"
                       className="bg-sbbsBelge px-4 py-3 mt-3 text-sm text-gray-700 italic mx-2 mb-4 rounded-lg"
                     >
-                      "La certification SBBS nous a ouvert des portes. Nos
-                      partenaires ont maintenant confiance en notre capacité à
-                      délivrer. C'est un vrai game-changer pour notre
-                      crédibilité."
+                      {t("certification.Testymonial.card1.description")}
                     </blockquote>
                   </div>
                 </div>
@@ -362,37 +355,10 @@ export default function Certification() {
                     <div className="w-9 h-9 rounded-full bg-sbbsBlue"></div>
                     <div>
                       <h1 className="text-left text-sbbsYellow font-bold">
-                        TechInnov CI
+                        {t("certification.Testymonial.card1.compagnieName")}
                       </h1>
                       <p className="text-xs text-sbbsGrayLight text-nowrap">
-                        Secteur : Technologies - 25 employés
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="max-w-lg ">
-                    {/* Testimonial */}
-                    <blockquote
-                      data-aos="zoom-in"
-                      className="bg-sbbsBelge px-4 py-3 mt-3 text-sm text-gray-700 italic mx-2 mb-4 rounded-lg"
-                    >
-                      "La certification SBBS nous a ouvert des portes. Nos
-                      partenaires ont maintenant confiance en notre capacité à
-                      délivrer. C'est un vrai game-changer pour notre
-                      crédibilité."
-                    </blockquote>
-                  </div>
-                </div>
-                {/* TechInnov CI */}
-                <div>
-                  <div data-aos="zoom-in" className="flex items-start gap-2">
-                    <div className="w-9 h-9 rounded-full bg-sbbsBlue"></div>
-                    <div>
-                      <h1 className="text-left text-sbbsYellow font-bold">
-                        TechInnov CI
-                      </h1>
-                      <p className="text-xs text-sbbsGrayLight text-nowrap">
-                        Secteur : Technologies - 25 employés
+                        {t("certification.Testymonial.card1.sector")}
                       </p>
                     </div>
                   </div>
@@ -403,10 +369,31 @@ export default function Certification() {
                       data-aos="zoom-in"
                       className="bg-sbbsBelge px-4 py-3 mt-3 text-sm text-gray-700 italic mx-2 mb-4 rounded-lg"
                     >
-                      "La certification SBBS nous a ouvert des portes. Nos
-                      partenaires ont maintenant confiance en notre capacité à
-                      délivrer. C'est un vrai game-changer pour notre
-                      crédibilité."
+                      {t("certification.Testymonial.card1.description")}
+                    </blockquote>
+                  </div>
+                </div>
+                {/* TechInnov CI */}
+                <div>
+                  <div data-aos="zoom-in" className="flex items-start gap-2">
+                    <div className="w-9 h-9 rounded-full bg-sbbsBlue"></div>
+                    <div>
+                      <h1 className="text-left text-sbbsYellow font-bold">
+                        {t("certification.Testymonial.card1.compagnieName")}
+                      </h1>
+                      <p className="text-xs text-sbbsGrayLight text-nowrap">
+                        {t("certification.Testymonial.card1.sector")}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="max-w-md mx-auto ">
+                    {/* Testimonial */}
+                    <blockquote
+                      data-aos="zoom-in"
+                      className="bg-sbbsBelge px-4 py-3 mt-3 text-sm text-gray-700 italic mx-2 mb-4 rounded-lg"
+                    >
+                      {t("certification.Testymonial.card1.description")}
                     </blockquote>
                   </div>
                 </div>
@@ -424,7 +411,7 @@ export default function Certification() {
             data-duration-aos="2000"
             className="pt-10 text-center text-white font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
           >
-            Téléchargez la grille officielle
+            {t("certification.downloadOfficialGrid.titlte")}
           </h1>
 
           <div className="max-w-md">
@@ -433,8 +420,7 @@ export default function Certification() {
               data-duration-aos="5000"
               className="mt-4 text-gray-200 text-xs sm:text-sm md:text-base"
             >
-              Obtenez la grille complète d'évaluation SBBS avec tous les
-              critères détaillés et préparez votre certification
+              {t("certification.downloadOfficialGrid.subtitle")}
             </p>
           </div>
 
@@ -444,7 +430,7 @@ export default function Certification() {
               data-duration-aos="6000"
               className="bg-sbbsYellow text-black font-bold text-sm md:text-base w-fit h-10 rounded-full shadow-md hover:opacity-90 transition px-4"
             >
-              Télécharger la grille en PDF
+              {t("certification.downloadOfficialGrid.btn")}
             </button>
 
             {/* <button

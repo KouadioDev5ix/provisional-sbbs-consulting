@@ -10,7 +10,7 @@ export type EventType =
   | "Networking"
   | "Formation"
   | "Masterclass"
-  | "Mission";
+  | "Business";
 
 export interface ICommunityEventCard {
   id: number;

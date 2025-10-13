@@ -1,4 +1,3 @@
-import { Play } from "lucide-react";
 import type {
   ISteps,
   ISuccessStories,
@@ -8,82 +7,56 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import testymonyVideo from "../../Asset/Videos/Présentation de l'école des affaires LA SOLOMON BETSALEEL BUSINESS SCHOOL SBBS.mp4";
+import { useTranslation } from "react-i18next";
+
 export default function Methodologie() {
+  const { t } = useTranslation();
+
   const steps: ISteps[] = [
     {
       number: 1,
-      title: "Diagnostic",
-      period: "2 semaines",
-      description:
-        "Analyse complète de votre écosystème numérique actuel des opportunités d'amélioration et potentiel de croissance.",
+      title: t("methodologie.fourTransformationStep.steps.diagnostic.title"),
+      period: t("methodologie.fourTransformationStep.steps.diagnostic.period"),
+      description: t(
+        "methodologie.fourTransformationStep.steps.diagnostic.description"
+      ),
     },
     {
       number: 2,
-      title: "Plan d'action",
-      period: "1 semaines",
-      description:
-        "Élaboration d'une feuille de route personnalisée, validation des objectifs et planification des actions.",
+      title: t("methodologie.fourTransformationStep.steps.actionplan.title"),
+      period: t("methodologie.fourTransformationStep.steps.actionplan.period"),
+      description: t(
+        "methodologie.fourTransformationStep.steps.actionplan.description"
+      ),
     },
     {
       number: 3,
-      title: "Mise en Œuvre",
-      period: "10 mois",
-      description:
-        "Implémentation progressive des solutions, formation des équipes, suivi rigoureux et ajustements.",
+      title: t(
+        "methodologie.fourTransformationStep.steps.implementation.title"
+      ),
+      period: t(
+        "methodologie.fourTransformationStep.steps.implementation.period"
+      ),
+      description: t(
+        "methodologie.fourTransformationStep.steps.implementation.description"
+      ),
     },
     {
       number: 4,
-      title: "Certification",
-      period: "2 semaines",
-      description:
-        "Évaluation finale, attribution de la mention SBBS, intégration à la communauté d'élite Business.",
+      title: t("methodologie.fourTransformationStep.steps.certification.title"),
+      period: t(
+        "methodologie.fourTransformationStep.steps.certification.period"
+      ),
+      description: t(
+        "methodologie.fourTransformationStep.steps.certification.description"
+      ),
     },
   ];
 
-  const successStories: ISuccessStories[] = [
-    {
-      company: "Techninnov CI",
-      sector: "Secteur : Technologies - 50 employés",
-      metrics: {
-        revenue: { value: "+120%", label: "Chiffre d'affaires" },
-        costs: { value: "-45%", label: "Coûts opérationnels" },
-      },
-      productivity: { value: "85%", label: "Productivité" },
-      satisfaction: { value: "95%", label: "Satisfaction client" },
-      rating: "SBBS-2",
-      ratingColor: "blue",
-      testimonial:
-        '"SBBS Consulting a transformé notre façon de travailler. Nous avons maintenant des processus clairs et une équipe motivée qui comprend sa valeur ajoutée sur nos marchés."',
-    },
-    {
-      company: "AgroPlus Benin",
-      sector: "Secteur : Agroalimentaire - 30 employés",
-      metrics: {
-        revenue: { value: "+120%", label: "Chiffre d'affaires" },
-        costs: { value: "-45%", label: "Coûts opérationnels" },
-      },
-      productivity: { value: "90%", label: "Productivité" },
-      satisfaction: { value: "98%", label: "Satisfaction client" },
-      rating: "SBBS-5",
-      ratingColor: "yellow",
-      testimonial:
-        '"SBBS Consulting a transformé notre façon de travailler. Nous avons maintenant des processus clairs et une équipe motivée qui comprend sa valeur ajoutée sur nos marchés."',
-    },
-    {
-      company: "LogisTrans Ghana",
-      sector: "Secteur : Logistique - 75 employés",
-      metrics: {
-        revenue: { value: "+120%", label: "Chiffre d'affaires" },
-        costs: { value: "-45%", label: "Coûts opérationnels" },
-      },
-      productivity: { value: "88%", label: "Productivité" },
-      satisfaction: { value: "92%", label: "Satisfaction client" },
-      rating: "SBBS-5",
-      ratingColor: "yellow",
-      testimonial:
-        '"SBBS Consulting a transformé notre façon de travailler. Nous avons maintenant des processus clairs et une équipe motivée qui comprend sa valeur ajoutée sur nos marchés."',
-    },
-  ];
+  const successStories: ISuccessStories[] = t("methodologie.successStories", {
+    returnObjects: true,
+  }) as ISuccessStories[];
 
   useEffect(() => {
     Aos.init({ duration: 1500 });
@@ -104,24 +77,21 @@ export default function Methodologie() {
             data-aos="zoom-in"
             className="pt-10 text-white font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
           >
-            Une Méthodologie Éprouvée
+            {t("methodologie.hero.title")}
           </h1>
 
           <p
             data-aos="zoom-in"
             className="mt-4 text-sbbsYellow text-xs sm:text-sm md:text-base"
           >
-            Des Résultats Mesurables et Durables
+            {t("methodologie.hero.littleText")}
           </p>
 
           <p
             data-aos="zoom-in"
             className="mt-4 text-gray-200 text-xs sm:text-sm md:text-base"
           >
-            Notre approche structurée combine rigueur méthodologique et
-            pragmatisme terrain pour transformer durablement votre entreprise.
-            Découvrez comment nous avons accompagné plus de 500 entreprises vers
-            l'excellence opérationnelle.
+            {t("methodologie.hero.subtitle")}
           </p>
         </div>
       </div>
@@ -133,10 +103,10 @@ export default function Methodologie() {
               data-aos="zoom-in"
               className="text-xl md:text-3xl font-extrabold text-sbbsBlue text-center"
             >
-              Les 4 étapes de votre transformation
+              {t("methodologie.fourTransformationStep.title")}
             </h2>
             <p data-aos="zoom-in" className="mt-2 text-gray-600 text-center">
-              Un parcours structuré et progressif vers l'excellence
+              {t("methodologie.fourTransformationStep.subtilte")}
             </p>
           </div>
         </div>
@@ -178,10 +148,10 @@ export default function Methodologie() {
         <div className="flex items-center justify-center">
           <div data-aos="zoom-in" className="pt-12">
             <h2 className="text-xl md:text-3xl font-extrabold text-sbbsBlue text-center">
-              Histoires de réussite
+              {t("methodologie.historiesSucces.title")}
             </h2>
             <p className="mt-2 mb-5 text-gray-600 text-center">
-              Des transformations concrètes et mesurables
+              {t("methodologie.historiesSucces.subtilte")}
             </p>
           </div>
         </div>
@@ -263,84 +233,71 @@ export default function Methodologie() {
               data-aos="zoom-in"
               className="pt-10 text-sbbsBlue font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
             >
-              Témoignages vidéos
+              {t("methodologie.videoTestimony.title")}
             </h1>
 
             <p
               data-aos="zoom-in"
               className="mt-4 text-gray-600 text-xs sm:text-sm md:text-base"
             >
-              Des Résultats Mesurables et Durables
+              {t("methodologie.videoTestimony.subtilte")}
             </p>
 
             <div className="flex items-center justify-center">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
-                <div data-aos="zoom-in">
-                  {/*  Card 1 */}
-                  <div className="w-64 md:w-full rounded-lg bg-sbbsBlue cursor-pointer">
-                    <div className="flex items-center justify-center p-6">
-                      <button className="flex items-center justify-center bg-sbbsYellow rounded-full h-14 w-14">
-                        <Play />
-                      </button>
-                    </div>
-                  </div>
+                <div
+                  data-aos="zoom-in"
+                  className="w-64 md:w-full  h-44 cursor-pointer"
+                >
+                  <video width="640" controls className=" rounded-md shadow-sm">
+                    <source src={testymonyVideo} type="video/mp4" />
+                  </video>
+
                   <div>
-                    <p>
-                      <span className="text-md font-bold text-gray-600">
-                        {" "}
-                        Koffi
-                      </span>{" "}
-                      :{" "}
-                      <span className="text-xs font-semibold text-sbbsBlue">
-                        Lorem ipsum dolor
-                      </span>
+                    <p className="font-semibold text-gray-600">
+                      {t("methodologie.video.title")}
                     </p>
+                    <span className="text-gray-500 font-normal">
+                      {t("methodologie.video.subtilte")}
+                    </span>
                   </div>
                 </div>
                 {/* Card 2 */}
-                <div data-aos="zoom-in">
-                  {/*  Card 1 */}
-                  <div className="w-64 md:w-full rounded-lg bg-sbbsBlue cursor-pointer">
-                    <div className="flex items-center justify-center p-6">
-                      <button className="flex items-center justify-center bg-sbbsYellow rounded-full h-14 w-14">
-                        <Play />
-                      </button>
-                    </div>
-                  </div>
+                <div
+                  data-aos="zoom-in"
+                  className="w-64 md:w-full  h-44 cursor-pointer"
+                >
+                  <video width="640" controls className=" rounded-md shadow-sm">
+                    <source src={testymonyVideo} type="video/mp4" />
+                  </video>
+
                   <div>
-                    <p>
-                      <span className="text-md font-bold text-gray-600">
-                        {" "}
-                        Koffi
-                      </span>{" "}
-                      :{" "}
-                      <span className="text-xs font-semibold text-sbbsBlue">
-                        Lorem ipsum dolor
-                      </span>
+                    <p className="font-semibold text-gray-600">
+                      {t("methodologie.video.title")}
                     </p>
+
+                    <span className="text-gray-500 font-normal">
+                      {t("methodologie.video.subtilte")}
+                    </span>
                   </div>
                 </div>
                 {/* Card 3 */}
-                <div data-aos="zoom-in">
-                  {/*  Card 1 */}
-                  <div className="w-64 md:w-full rounded-lg bg-sbbsBlue cursor-pointer">
-                    <div className="flex items-center justify-center p-6">
-                      <button className="flex items-center justify-center bg-sbbsYellow rounded-full h-14 w-14">
-                        <Play />
-                      </button>
-                    </div>
-                  </div>
+                <div
+                  data-aos="zoom-in"
+                  className="w-64 md:w-full  h-44 cursor-pointer"
+                >
+                  <video width="640" controls className=" rounded-md shadow-sm">
+                    <source src={testymonyVideo} type="video/mp4" />
+                  </video>
+
                   <div>
-                    <p>
-                      <span className="text-md font-bold text-gray-600">
-                        {" "}
-                        Koffi
-                      </span>{" "}
-                      :{" "}
-                      <span className="text-xs font-semibold text-sbbsBlue">
-                        Lorem ipsum dolor
-                      </span>
+                    <p className="font-semibold text-gray-600">
+                      {t("methodologie.video.title")}
                     </p>
+
+                    <span className="text-gray-500 font-normal">
+                      {t("methodologie.video.subtilte")}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -356,14 +313,14 @@ export default function Methodologie() {
               data-aos="zoom-in"
               className="pt-10 text-center text-sbbsYellow font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
             >
-              Résultats moyens constatés
+              {t("methodologie.averageResult.title")}
             </h1>
 
             <p
               data-aos="zoom-in"
               className="mt-4 text-gray-200 text-xs sm:text-sm md:text-base"
             >
-              Sur l'ensemble de nos clients accompagnés
+              {t("methodologie.averageResult.subtilte")}
             </p>
 
             <div className="flex items-center justify-center">
@@ -376,7 +333,7 @@ export default function Methodologie() {
                     </h1>
                   </div>
                   <p className="text-sm text-sbbsWhite">
-                    Croissance moyenne du chiffre d'affaires sur 12 mois
+                    {t("methodologie.averageResult.card1")}
                   </p>
                 </div>
                 {/* -42% */}
@@ -387,7 +344,7 @@ export default function Methodologie() {
                     </h1>
                   </div>
                   <p className="text-sm text-sbbsWhite">
-                    Optimisation des charges opérationnelles
+                    {t("methodologie.averageResult.card2")}
                   </p>
                 </div>
                 {/* x2.5 */}
@@ -398,18 +355,18 @@ export default function Methodologie() {
                     </h1>
                   </div>
                   <p className="text-sm text-sbbsWhite">
-                    Amélioration de l'efficacité <br /> globale
+                    {t("methodologie.averageResult.card3")}
                   </p>
                 </div>
                 {/* 6 mois */}
                 <div className="w-72 md:w-full p-2 rounded-lg bg-sbbsBlueLigth cursor-pointer">
                   <div className="flex items-center justify-center p-1">
                     <h1 className="text-sbbsYellow text-2xl md:text-4xl  font-extrabold">
-                      6 mois
+                      {t("methodologie.averageResult.card4.month")}
                     </h1>
                   </div>
                   <p className="text-sm text-sbbsWhite">
-                    Retour sur investissement de l'accompagnement
+                    {t("methodologie.averageResult.card4.description")}
                   </p>
                 </div>
               </div>
@@ -427,7 +384,7 @@ export default function Methodologie() {
               data-duration-aos="4000"
               className="pt-10 text-center text-sbbsBlue font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
             >
-              Évaluez votre niveau de maturité
+              {t("methodologie.maturityLevel.title")}
             </h1>
 
             <div
@@ -436,15 +393,14 @@ export default function Methodologie() {
               className="max-w-xl mx-auto"
             >
               <p className="mt-4 text-gray-600 text-xs sm:text-sm md:text-base">
-                Découvrez votre score SBBS actuel et identifiez vos axes
-                d'amélioration prioritaires en moins de 5 minutes
+                {t("methodologie.maturityLevel.subtitle")}
               </p>
             </div>
 
             <div data-aos="zoom-in" data-duration-aos="7000" className="mt-6">
               <Link to={"certifications"}>
                 <button className="bg-sbbsBlue text-sbbsWhite font-medium text-sm md:text-base w-fit h-10 rounded-full shadow-md hover:opacity-90 transition px-4">
-                  Lancer le simulateur gratuit
+                  {t("methodologie.maturityLevel.btn")}
                 </button>
               </Link>
             </div>

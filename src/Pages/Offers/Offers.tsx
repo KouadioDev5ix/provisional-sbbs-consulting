@@ -8,10 +8,7 @@ import {
   Plus,
   X,
 } from "lucide-react";
-import type {
-  IModules,
-  IOfffersFeatures,
-} from "../../Models/Interfaces/Offers/offers";
+import type { IOfffersFeatures } from "../../Models/Interfaces/Offers/offers";
 import structuration from "../../Asset/Icons/Structuration.png";
 import {
   Accordion,
@@ -19,118 +16,159 @@ import {
   AccordionSummary,
   Typography,
 } from "@mui/material";
-
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ButtonLoader from "../../Components/ButtonLoader/ButtonLoader";
-// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import type { IDevis } from "../../types/devis";
+import { API_devisRequest } from "../../Services/devis.service/devis.service";
+
+import { useTranslation } from "react-i18next";
 
 export default function Offers() {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { t } = useTranslation();
+
+  const [formInputValue, setFormInputValue] = useState<IDevis>({
+    firstName: "",
+    lastName: "",
+    number: "",
+    Profession: "",
+    mail: "",
+  });
+  const [actionRequestLoader, setActionRequestLoader] =
+    useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [requestHasError, setRequestHasError] = useState<boolean>(false);
+
   /**
    * Open modal for dianostic request
    */
 
   const openAskQuoteModal = (): void => {
     (document.getElementById("quoteModal") as HTMLDialogElement).showModal();
-    console.log("fonction works...");
+
+    setRequestHasError(false);
+  };
+
+  const closeModal = (): void => {
+    (document.getElementById("quoteModal") as HTMLDialogElement).close();
   };
 
   /**
    *
    */
 
-  const handleAskQuoteResquest = (): void => {
-    setIsLoading(true);
-    setTimeout(() => {
-      toast.success("Merci , votre demande a bien été enregistrer");
-      (document.getElementById("quoteModal") as HTMLDialogElement).close();
-      setIsLoading(false);
-    }, 1500);
+  const clearFormAfterRequest = (): void => {
+    setFormInputValue({
+      firstName: "",
+      lastName: "",
+      number: "",
+      Profession: "",
+      mail: "",
+    });
   };
+
+  /**
+   *
+   * @returns
+   */
+
+  const handleAskQuoteResquest = () => {
+    const inputFieldiSEmpty = Object.values(formInputValue).some(
+      (valure) => valure.trim() === ""
+    );
+    setActionRequestLoader(true);
+    if (inputFieldiSEmpty) {
+      setActionRequestLoader(false);
+      setRequestHasError(true);
+      setErrorMessage("Veuillez renseigner tous les champs svp !");
+      return;
+    }
+    API_devisRequest(formInputValue)
+      .then((response) => {
+        clearFormAfterRequest();
+        setActionRequestLoader(false);
+        (document.getElementById("quoteModal") as HTMLDialogElement).close();
+        toast.success(response.data.message);
+      })
+      .catch((error) => {
+        setActionRequestLoader(false);
+        setRequestHasError(true);
+        if (error.message.data) {
+          setErrorMessage(error.response.data.message);
+        } else {
+          setErrorMessage("Une erreur s'est produite");
+        }
+        console.error("error while creating user", error);
+      });
+  };
+
+  /**
+   *
+   */
 
   useEffect(() => {
     Aos.init({ duration: 1500 });
   }, []);
 
-  const features: string[] = [
-    "Diagnostic complet de votre entreprise",
-    "Plan d'action personnalisé sur 12 mois",
-    "Implémentation du système SYSTEMA",
-    "Mise en place de la Machine à Vendre",
-    "Formation complète de vos équipes",
-  ];
+  const features: string[] = t("offers.pack.features", {
+    returnObjects: true,
+  }) as string[];
 
-  const modules: IModules[] = [
-    {
-      icon: <FileText className="w-8 h-8 text-white" />,
-      title: "Structuration",
-      description:
-        "Processus, organigramme, fiches de poste, manuel de procédures",
-      bgColor: "bg-sbbsBlue",
-    },
-    {
-      icon: <Calculator className="w-8 h-8 text-white" />,
-      title: "Finance & Gestion",
-      description: "Tableau de bord, KPIs, gestion de trésorerie, rentabilité",
-      bgColor: "bg-sbbsBlue",
-    },
-    {
-      icon: <Percent className="w-8 h-8 text-white" />,
-      title: "Commercial",
-      description: "Stratégie de vente, pipeline, script, closing techniques",
-      bgColor: "bg-sbbsBlue",
-    },
-    {
-      icon: <Monitor className="w-8 h-8 text-white" />,
-      title: "Digital & Marketing",
-      description:
-        "CRM, automatisation, présence en ligne, génération de leads",
-      bgColor: "bg-sbbsBlue",
-    },
-  ];
+  type TableBodyType = {
+    name1: string;
+    name2: string;
+    name3: string;
+    name4: string;
+    name5: string;
+    name6: string;
+    name7: string;
+  };
+
+  const tableBody = t("offers.compare.TableBody", {
+    returnObjects: true,
+  }) as TableBodyType;
 
   const offfersFeatures: IOfffersFeatures[] = [
     {
-      name: "Diagnostic initial",
+      name: tableBody.name1,
       starter: true,
       packComplet: true,
       premium: true,
     },
     {
-      name: "Plan d'action personnalisé",
+      name: tableBody.name2,
       starter: true,
       packComplet: true,
       premium: true,
     },
     {
-      name: "Système SYSTEMA",
+      name: tableBody.name3,
       starter: false,
       packComplet: true,
       premium: true,
     },
     {
-      name: "Machine à Vendre",
+      name: tableBody.name4,
       starter: false,
       packComplet: true,
       premium: true,
     },
     {
-      name: "Formation équipes",
+      name: tableBody.name5,
       starter: false,
       packComplet: true,
       premium: true,
     },
     {
-      name: "Suivi consultant",
+      name: tableBody.name6,
       starter: false,
       packComplet: true,
       premium: true,
     },
     {
-      name: "Certification SBBS",
+      name: tableBody.name7,
       starter: false,
       packComplet: true,
       premium: true,
@@ -170,7 +208,7 @@ export default function Offers() {
             data-duration-aos="4000"
             className="pt-10 text-white font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
           >
-            Transformez votre entreprise avec nos solutions sur-mesure
+            {t("offers.hero.title")}
           </h1>
 
           <p
@@ -178,8 +216,7 @@ export default function Offers() {
             data-duration-aos="5000"
             className="mt-4 text-gray-200 text-xs sm:text-sm md:text-base"
           >
-            Des offres complètes pour structurer, optimiser et propulser votre
-            croissance
+            {t("offers.hero.subtitle")}
           </p>
         </div>
       </div>
@@ -192,10 +229,10 @@ export default function Offers() {
               data-aos="zoom-in"
               className="text-2xl md:text-3xl font-extrabold text-sbbsBlue text-center"
             >
-              Notre Pack Phare
+              {t("offers.pack.title")}
             </h2>
             <p data-aos="zoom-in" className="mt-2 text-gray-600">
-              La solution complète pour transformer votre entreprise en 12 mois
+              {t("offers.pack.subtitle")}
             </p>
           </div>
         </div>
@@ -210,14 +247,13 @@ export default function Offers() {
                   data-aos="zoom-in"
                   className="text-lg lg:text-xl font-bold text-sbbsBlue mb-4"
                 >
-                  Pack Systema +<br />
-                  Machine à Vendre
+                  {t("offers.pack.Systema")}
                 </h1>
                 <p
                   data-aos="zoom-in"
                   className="w-full text-sbbsYellow text-md font-semibold mb-4"
                 >
-                  L'accompagnement ultime pour votre croissance
+                  {t("offers.pack.SystemaSubtitle")}
                 </p>
 
                 {/* Features List */}
@@ -241,10 +277,10 @@ export default function Offers() {
                 {/* CTA Button */}
                 <button
                   data-aos="zoom-in"
-                  className="w-fit lg:w-fit bg-sbbsYellow text-black font-semibold h-10 px-4 rounded-full transition-colors duration-200"
+                  className="w-full font-bold text-sm bg-sbbsYellow text-black h-10 px-4 rounded-full transition-colors duration-200"
                   onClick={openAskQuoteModal}
                 >
-                  Demander un devis personnalisé
+                  {t("offers.pack.cta")}
                 </button>
               </div>
             </div>
@@ -256,42 +292,92 @@ export default function Offers() {
               data-aos="zoom-in"
               className="text-sbbsBlue text-xl font-bold mb-2 text-center"
             >
-              Modules inclus dans le pack
+              {t("offers.modules.title")}
             </h2>
 
             <div className="grid grid-cols-2 gap-4">
-              {modules.map((module, index) => (
+              {/* Card 1 */}
+              <div
+                data-aos="zoom-in"
+                className="bg-white border border-gray-200 rounded-xl p-2 hover:shadow-md transition-shadow duration-200"
+              >
                 <div
-                  data-aos="zoom-in"
-                  key={index}
-                  className="bg-white border border-gray-200 rounded-xl p-2 hover:shadow-md transition-shadow duration-200"
+                  className={`bg-sbbsBlue w-12 h-12 rounded-lg flex items-center justify-center mb-4`}
                 >
-                  <div
-                    className={`${module.bgColor} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}
-                  >
-                    {module.icon}
-                  </div>
-                  <h3 className="font-bold text-gray-900 mb-2 text-sm lg:text-base">
-                    {module.title}
-                  </h3>
-                  <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                    {module.description}
-                  </p>
+                  <FileText className="w-8 h-8 text-white" />
                 </div>
-              ))}
+                <h3 className="font-bold text-gray-900 mb-2 text-sm lg:text-base">
+                  {t("offers.modules.A.title")}
+                </h3>
+                <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                  {t("offers.modules.A.description")}
+                </p>
+              </div>
+              {/* Card 2 */}
+              <div
+                data-aos="zoom-in"
+                className="bg-white border border-gray-200 rounded-xl p-2 hover:shadow-md transition-shadow duration-200"
+              >
+                <div
+                  className={`bg-sbbsBlue w-12 h-12 rounded-lg flex items-center justify-center mb-4`}
+                >
+                  <Calculator className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm lg:text-base">
+                  {t("offers.modules.B.title")}
+                </h3>
+                <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                  {t("offers.modules.B.description")}
+                </p>
+              </div>
+              {/* Card 3*/}
+              <div
+                data-aos="zoom-in"
+                className="bg-white border border-gray-200 rounded-xl p-2 hover:shadow-md transition-shadow duration-200"
+              >
+                <div
+                  className={`bg-sbbsBlue w-12 h-12 rounded-lg flex items-center justify-center mb-4`}
+                >
+                  <Percent className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm lg:text-base">
+                  {t("offers.modules.C.title")}
+                </h3>
+                <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                  {t("offers.modules.C.description")}
+                </p>
+              </div>
+              {/* Card 4 */}
+              <div
+                data-aos="zoom-in"
+                className="bg-white border border-gray-200 rounded-xl p-2 hover:shadow-md transition-shadow duration-200"
+              >
+                <div
+                  className={`bg-sbbsBlue w-12 h-12 rounded-lg flex items-center justify-center mb-4`}
+                >
+                  <Monitor className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm lg:text-base">
+                  {t("offers.modules.D.title")}
+                </h3>
+                <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                  {t("offers.modules.D.description")}
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       {/* Services Complémentaires */}
-      <div className="w-10/12 max-w-6xl mx-auto">
+      <div className="w-10/12 max-w-7xl mx-auto">
         <div className="flex items-center justify-center my-7">
           <div data-aos="zoom-in">
             <h2 className="text-2xl md:text-3xl font-extrabold text-sbbsBlue text-center">
-              Services Complémentaires
+              {t("offers.services.title")}
             </h2>
             <p className="mt-2 text-gray-600">
-              Renforcez votre transformation avec nos modules additionnels
+              {t("offers.services.subtitle")}
             </p>
           </div>
         </div>
@@ -306,14 +392,15 @@ export default function Offers() {
             <div className="flex items-center justify-center w-16 h-16 mx-auto rounded-full bg-sbbsYellow mb-4">
               <img src={structuration} alt="" className="w-7 h-7" />
             </div>
-            <h3 className="text-lg font-bold text-sbbsBlue">ERP Léger</h3>
+            <h3 className="text-lg font-bold text-sbbsBlue">
+              {t("offers.services.erp.title")}
+            </h3>
             <div className="mx-auto">
               <p className="mt-2 text-gray-600 text-sm">
-                Solution de gestion intégrée adaptée aux PME africaines. Gérez
-                vos stocks, factures et comptabilité en un seul endroit.
+                {t("offers.services.erp.desc")}
               </p>
               <h1 className="text-sbbsCustomOrange font-semibold mt-3">
-                À partir de 50.000 FCFA/mois
+                {t("offers.services.erp.price")}
               </h1>
             </div>
           </div>
@@ -327,15 +414,14 @@ export default function Offers() {
               <img src={structuration} alt="" className="w-7 h-7" />
             </div>
             <h3 className="text-lg font-bold text-sbbsBlue">
-              Automatisation Marketing
+              {t("offers.services.marketing.title")}
             </h3>
             <p className="mt-2 text-gray-600 text-sm">
-              Optimisation des opérations, amélioration de la productivité et
-              maîtrise des résultats financiers pour maximiser vos résultats.
+              {t("offers.services.marketing.desc")}
             </p>
 
             <h1 className="text-sbbsCustomOrange font-semibold mt-3">
-              À partir de 75.000 FCFA/mois
+              {t("offers.services.marketing.price")}
             </h1>
           </div>
 
@@ -347,15 +433,15 @@ export default function Offers() {
             <div className="flex items-center justify-center w-16 h-16 mx-auto rounded-full bg-sbbsYellow mb-4">
               <img src={structuration} alt="" className="w-7 h-7" />
             </div>
-            <h3 className="text-lg font-bold text-sbbsBlue">CRM Premium</h3>
+            <h3 className="text-lg font-bold text-sbbsBlue">
+              {t("offers.services.crm.title")}
+            </h3>
             <p className="mt-2 text-gray-600 text-sm">
-              Développement commercial, expansion stratégique et accès à de
-              nouveaux marchés pour élever votre entreprise vers de nouveaux
-              sommets.
+              {t("offers.services.crm.desc")}
             </p>
             <h1 className="text-sbbsCustomOrange font-semibold mt-3">
               <h1 className="text-sbbsCustomOrange font-semibold mt-3">
-                À partir de 50.000 FCFA/mois
+                {t("offers.services.crm.price")}
               </h1>
             </h1>
           </div>
@@ -368,15 +454,13 @@ export default function Offers() {
               <img src={structuration} alt="" className="w-7 h-7" />
             </div>
             <h3 className="text-lg font-bold text-sbbsBlue">
-              Formation Continue
+              {t("offers.services.training.title")}
             </h3>
             <p className="mt-2 text-gray-600 text-sm">
-              Développement commercial, expansion stratégique et accès à de
-              nouveaux marchés pour élever votre entreprise vers de nouveaux
-              sommets.
+              {t("offers.services.training.desc")}
             </p>
             <h1 className="text-sbbsCustomOrange font-semibold mt-3">
-              Sur mesure
+              {t("offers.services.training.price")}
             </h1>
           </div>
         </div>
@@ -386,36 +470,33 @@ export default function Offers() {
         <div className="flex items-center justify-center my-7">
           <div data-aos="zoom-in">
             <h2 className="text-2xl md:text-3xl font-extrabold text-sbbsBlue text-center">
-              Comparez nos offres
+              {t("offers.compare.title")}
             </h2>
-            <p className="mt-2 text-gray-600">
-              Choisissez la formule adaptée à vos besoins et votre budget
-            </p>
+            <p className="mt-2 text-gray-600">{t("offers.compare.subtitle")}</p>
           </div>
         </div>
         {/* Unified Table */}
         <div className="flex items-center justify-center">
           <button className="bg-sbbsYellow text-black w-fit h-fit rounded-full px-4 -mb-2">
-            Recommandé
+            {t("offers.compare.recommended")}
           </button>
         </div>
         <div className="bg-white overflow-auto rounded-lg shadow-lg border border-gray-200">
           <table className="w-full">
             {/* Table Header */}
-
             <thead>
               <tr className="bg-sbbsBlue">
                 <th className="px-3 md:px-6 py-4 text-left text-white font-semibold text-sm md:text-base">
-                  Caractéristiques
+                  {t("offers.compare.tableTitle.features")}
                 </th>
                 <th className="px-3 md:px-6 py-4 text-center text-white font-semibold text-sm md:text-base">
-                  Starter
+                  {t("offers.compare.tableTitle.starter")}
                 </th>
                 <th className="px-3 md:px-6 py-4 text-center text-white font-semibold text-sm md:text-base">
-                  Pack complet
+                  {t("offers.compare.tableTitle.completePack")}
                 </th>
                 <th className="px-3 md:px-6 py-4 text-center text-white font-semibold text-sm md:text-base">
-                  Premium
+                  {t("offers.compare.tableTitle.premium")}
                 </th>
               </tr>
             </thead>
@@ -452,15 +533,13 @@ export default function Offers() {
         <div className="flex items-center justify-center my-7">
           <div data-aos="zoom-in">
             <h2 className="text-2xl md:text-3xl font-extrabold text-sbbsBlue text-center">
-              Questions fréquentes
+              {t("offers.faq.title")}
             </h2>
-            <p className="mt-2 text-gray-600">
-              Tout ce que vous devez savoir sur nos offres
-            </p>
+            <p className="mt-2 text-gray-600">{t("offers.faq.subtitle")}</p>
           </div>
         </div>
         {/* Comment se déroule le diagnostic initial ? */}
-        <div data-aos="fade-up" data-duration-aos="4000">
+        <div data-aos="zoom-in" data-duration-aos="4000">
           <Accordion>
             <AccordionSummary
               expandIcon={
@@ -471,25 +550,19 @@ export default function Offers() {
             >
               <Typography component="span">
                 <span className="text-gray-800 font-bold">
-                  Comment se déroule le diagnostic initial ?
+                  {t("offers.faq.Accordion.Question1.title")}
                 </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <p className="text-sbbsGray text-sm">
-                Le diagnostic initial se déroule sur 2 semaines et comprend :
-                une analyse documentaire approfondie, des entretiens avec les
-                dirigeants et les équipes clés, l'observation des processus en
-                place, l'évaluation des outils et systèmes existants, et la
-                remise d'un rapport détaillé avec nos recommandations
-                prioritaires. Cette phase est cruciale pour établir une baseline
-                et définir les axes d'amélioration.
+                {t("offers.faq.Accordion.Question1.content")}
               </p>
             </AccordionDetails>
           </Accordion>
         </div>
         {/* Quelle est la différence entre SYSTEMA et la Machine à Vendre ? */}
-        <div data-aos="fade-up" data-duration-aos="5000" className="my-5">
+        <div data-aos="zoom-in" data-duration-aos="5000" className="my-5">
           <Accordion>
             <AccordionSummary
               expandIcon={
@@ -500,22 +573,19 @@ export default function Offers() {
             >
               <Typography component="span">
                 <span className="text-gray-800 font-bold">
-                  Quelle est la différence entre SYSTEMA et la Machine à Vendre
-                  ?
+                  {t("offers.faq.Accordion.Question2.title")}
                 </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <p className="text-sbbsGray text-sm">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatum laborum rem voluptate facere dicta fugiat, maiores
-                necessitatibus corporis?
+                {t("offers.faq.Accordion.Question2.content")}
               </p>
             </AccordionDetails>
           </Accordion>
         </div>
         {/* Comment sont organisées les formations pour nos équipes ? */}
-        <div data-aos="fade-up" data-duration-aos="6000">
+        <div data-aos="zoom-in" data-duration-aos="6000">
           <Accordion>
             <AccordionSummary
               expandIcon={
@@ -526,25 +596,19 @@ export default function Offers() {
             >
               <Typography component="span">
                 <span className="text-gray-800 font-bold">
-                  Comment sont organisées les formations pour nos équipes ?
+                  {t("offers.faq.Accordion.Question3.title")}
                 </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <p className="text-sbbsGray text-sm">
-                Le diagnostic initial se déroule sur 2 semaines et comprend :
-                une analyse documentaire approfondie, des entretiens avec les
-                dirigeants et les équipes clés, l'observation des processus en
-                place, l'évaluation des outils et systèmes existants, et la
-                remise d'un rapport détaillé avec nos recommandations
-                prioritaires. Cette phase est cruciale pour établir une baseline
-                et définir les axes d'amélioration.
+                {t("offers.faq.Accordion.Question3.content")}
               </p>
             </AccordionDetails>
           </Accordion>
         </div>
         {/* Quelles sont les modalités de paiement ? */}
-        <div data-aos="fade-up" data-duration-aos="7000" className="my-5">
+        <div data-aos="zoom-in" data-duration-aos="7000" className="my-5">
           <Accordion>
             <AccordionSummary
               expandIcon={
@@ -555,22 +619,20 @@ export default function Offers() {
             >
               <Typography component="span">
                 <span className="text-gray-800 font-bold">
-                  Quelles sont les modalités de paiement ?
+                  {t("offers.faq.Accordion.Question4.title")}
                 </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <p className="text-sbbsGray text-sm">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatum laborum rem voluptate facere dicta fugiat, maiores
-                necessitatibus corporis?
+                {t("offers.faq.Accordion.Question4.content")}
               </p>
             </AccordionDetails>
           </Accordion>
         </div>
         {/* Que se passe-t-il après les 12 mois d'accompagnement ? */}
 
-        <div data-aos="fade-up" data-duration-aos="8000" className="">
+        <div data-aos="zoom-in" data-duration-aos="8000" className="">
           <Accordion>
             <AccordionSummary
               expandIcon={
@@ -581,16 +643,13 @@ export default function Offers() {
             >
               <Typography component="span">
                 <span className="text-gray-800 font-bold">
-                  Que se passe-t-il après les 12 mois d'accompagnement ?
+                  {t("offers.faq.Accordion.Question5.title")}
                 </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <p className="text-sbbsGray text-sm">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatum laborum rem voluptate facere dicta fugiat, maiores
-                necessitatibus corporis? Voluptatum laborum rem voluptate facere
-                dicta fugiat, maiores necessitatibus corporis?
+                {t("offers.faq.Accordion.Question5.content")}
               </p>
             </AccordionDetails>
           </Accordion>
@@ -598,18 +657,13 @@ export default function Offers() {
       </div>
       {/* Prêt à passer à l'action ? */}
       <div className="bg-sbbsBlue flex items-center justify-center w-full h-fit ">
-        <div
-          data-aos="zoom-in"
-          // data-duration-aos="7000"
-          className="text-center max-w-3xl py-7"
-        >
+        <div data-aos="zoom-in" className="text-center max-w-3xl py-7">
           <h1 className="pt-10 text-center text-white font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl">
-            Prêt à passer à l'action ?
+            {t("offers.cta.title")}
           </h1>
 
           <p className="mt-4 text-gray-200 text-xs sm:text-sm md:text-base">
-            Commencez votre transformation dès aujourd'hui <br /> avec un
-            diagnostic gratuit
+            {t("offers.cta.subtitle")}
           </p>
 
           <div className="mt-6 flex  items-center justify-center gap-5">
@@ -617,7 +671,7 @@ export default function Offers() {
               className="bg-sbbsYellow text-black font-bold text-sm md:text-base w-fit h-10 rounded-full shadow-md hover:opacity-90 transition px-4"
               onClick={openAskQuoteModal}
             >
-              Demander un devis gratuit
+              {t("offers.cta.btn")}
             </button>
           </div>
         </div>
@@ -634,8 +688,16 @@ export default function Offers() {
           {/* TITLES ACTIONS  */}
           <div className="my-4">
             <h1 className="text-lg font-extrabold leading-3 ">
-              Demande de dévis
+              {t("offers.form.title")}
             </h1>
+          </div>
+
+          <div>
+            {requestHasError && (
+              <span className="text-red-600 text-sm">
+                {t("offers.form.error")}
+              </span>
+            )}
           </div>
           {/* CONTENT */}
           <div className={"h-fit"}>
@@ -644,16 +706,18 @@ export default function Offers() {
               <div className="flex items-center gap-3">
                 <div className="form-control w-full relative max-w-full">
                   <label className="label mb-0">
-                    <span className="label-text font-medium -mb-1">Nom</span>
+                    <span className="label-text font-medium -mb-1">
+                      {t("offers.form.labels.lastName")}
+                    </span>
                   </label>
                   <input
-                    // value={inputs.lastName}
-                    // onChange={(e) => {
-                    //   setInputs((previousState) => ({
-                    //     ...previousState,
-                    //     lastName: e.target.value,
-                    //   }));
-                    // }}
+                    value={formInputValue.lastName}
+                    onChange={(e) => {
+                      setFormInputValue((previousState) => ({
+                        ...previousState,
+                        lastName: e.target.value,
+                      }));
+                    }}
                     type="text"
                     placeholder="Ex: Kouadio"
                     className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md`}
@@ -662,12 +726,17 @@ export default function Offers() {
                 <div className="form-control w-full relative max-w-full">
                   <label className="label mb-0">
                     <span className="label-text font-medium -mb-1 ">
-                      Prenoms
+                      {t("offers.form.labels.firstName")}
                     </span>
                   </label>
                   <input
-                    // value={inputs.firstName}
-
+                    value={formInputValue.firstName}
+                    onChange={(e) => {
+                      setFormInputValue((previousState) => ({
+                        ...previousState,
+                        firstName: e.target.value,
+                      }));
+                    }}
                     type="text"
                     placeholder="Ex: Kouadio Alfred"
                     className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md `}
@@ -678,17 +747,17 @@ export default function Offers() {
               <div className="form-control relative w-full max-w-full my-2">
                 <label className="label mb-0">
                   <span className="label-text font-medium -mb-1 ">
-                    Profession
+                    {t("offers.form.labels.profession")}
                   </span>
                 </label>
                 <input
-                  // value={inputs.userName}
-                  // onChange={(e) => {
-                  //   setInputs((previousState) => ({
-                  //     ...previousState,
-                  //     userName: e.target.value,
-                  //   }));
-                  // }}
+                  value={formInputValue.Profession}
+                  onChange={(e) => {
+                    setFormInputValue((previousState) => ({
+                      ...previousState,
+                      Profession: e.target.value,
+                    }));
+                  }}
                   type="text"
                   placeholder="Entrepreneur"
                   className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md`}
@@ -721,18 +790,18 @@ export default function Offers() {
                 <div className="form-control relative w-full max-w-full">
                   <label className="label mb-0">
                     <span className="label-text font-medium -mb-1 ">
-                      Numéro
+                      {t("offers.form.labels.number")}
                     </span>
                   </label>
                   <input
                     type="text"
-                    // value={inputs.number}
-                    // onChange={(e) => {
-                    //   setInputs((previousState) => ({
-                    //     ...previousState,
-                    //     number: e.target.value,
-                    //   }));
-                    // }}
+                    value={formInputValue.number}
+                    onChange={(e) => {
+                      setFormInputValue((previousState) => ({
+                        ...previousState,
+                        number: e.target.value,
+                      }));
+                    }}
                     placeholder="Ex: 05 85 13 22 12"
                     className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md`}
                   />
@@ -740,17 +809,17 @@ export default function Offers() {
                 <div className="form-control relative w-full max-w-full">
                   <label className="label mb-0">
                     <span className="label-text font-medium -mb-1 ">
-                      Adrresse mail
+                      {t("offers.form.labels.mail")}
                     </span>
                   </label>
                   <input
-                    // value={inputs.mail}
-                    // onChange={(e) => {
-                    //   setInputs((previousState) => ({
-                    //     ...previousState,
-                    //     mail: e.target.value,
-                    //   }));
-                    // }}
+                    value={formInputValue.mail}
+                    onChange={(e) => {
+                      setFormInputValue((previousState) => ({
+                        ...previousState,
+                        mail: e.target.value,
+                      }));
+                    }}
                     type="text"
                     placeholder="Ex: kouadio@gmail.com"
                     className={`input relative input-bordered text-xs w-full h-10 md:h-10 max-w-full rounded-md`}
@@ -762,24 +831,27 @@ export default function Offers() {
 
           <div className="flex items-center gap-4 pt-7">
             <button
-              disabled={isLoading}
+              disabled={actionRequestLoader}
               className={`${
-                isLoading ? "cursor-not-allowed" : ""
+                actionRequestLoader ? "cursor-not-allowed" : ""
               } w-full h-10 bg-sbbsBlue rounded-md text-white`}
               onClick={handleAskQuoteResquest}
             >
               {/* {isLoading ? } */}
-              {isLoading ? (
+              {actionRequestLoader ? (
                 <span className="flex justify-center">
                   <ButtonLoader />
                 </span>
               ) : (
-                "Valider"
+                <span>{t("offers.form.actions.validate")}</span>
               )}
             </button>
 
-            <button className={`w-full h-10 bg-gray-200 rounded-md text-black`}>
-              Annuler
+            <button
+              className={`w-full h-10 bg-gray-200 rounded-md text-black`}
+              onClick={closeModal}
+            >
+              {t("offers.form.actions.cancel")}
             </button>
           </div>
         </div>

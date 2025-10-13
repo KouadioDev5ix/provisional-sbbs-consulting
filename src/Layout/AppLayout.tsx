@@ -5,15 +5,28 @@ import sbbsLogo from "../Asset/Images/SBBS-logo.jpeg";
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Drawer } from "@mui/material";
-
 import switchLanguage from "../Asset/Images/TurnLanguage.png";
 import toast from "react-hot-toast";
 import ButtonLoader from "../Components/ButtonLoader/ButtonLoader";
 import { ArrowUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function AppLayout({ children }: ILayoutComponent) {
+  const { t, i18n } = useTranslation();
+
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const [inputsValue, setInputValue] = useState<string>("");
+
+  /**
+   *
+   */
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "fr" ? "en" : "fr";
+    i18n.changeLanguage(newLang);
+    localStorage.setItem("i18nextLng", newLang);
+  };
 
   /**
    * @function handleSubscribeToNewsLetter()
@@ -21,18 +34,21 @@ export default function AppLayout({ children }: ILayoutComponent) {
 
   const handleSubscribeToNewsLetter = (): void => {
     setIsLoading(true);
-    setTimeout(() => {
-      toast.success("Merci pour votre inscription !");
+
+    if (inputsValue.trim() === "") {
       setIsLoading(false);
-    }, 1000);
+    } else {
+      setTimeout(() => {
+        toast.success("Merci pour votre inscription !");
+        setIsLoading(false);
+        setInputValue("");
+      }, 1000);
+    }
   };
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      /***
-       * défilement fluidde
-       */
       behavior: "smooth",
     });
   };
@@ -67,13 +83,26 @@ export default function AppLayout({ children }: ILayoutComponent) {
                  }`
                 }
               >
-                {item.label}
+                {t(item.label)}
               </NavLink>
             ))}
           </div>
 
           <div>
-            <img src={switchLanguage} alt="" className="cursor-pointer" />
+            {/* <img src={switchLanguage} alt="" className="cursor-pointer" /> */}
+
+            {/* Lang switch */}
+            <img
+              src={switchLanguage}
+              alt="Change Language"
+              onClick={toggleLanguage}
+              className="cursor-pointer w-6 h-6 hover:scale-110 transition"
+              title={
+                i18n.language === "fr"
+                  ? "Switch to English"
+                  : "Passer en Français"
+              }
+            />
           </div>
 
           <div className="md:hidden block" onClick={() => setOpenDrawer(true)}>
@@ -100,18 +129,18 @@ export default function AppLayout({ children }: ILayoutComponent) {
               </a>
               <div className="text-sm text-gray-100 font-normal">
                 <p data-aos="fade-up" data-duration-aos="4000">
-                  Branche du groupe SBBS dédiée à l'accompagnement des TPE{" "}
+                  {t("footer.description")}
                 </p>
 
-                <p data-aos="fade-up" data-duration-aos="8000">
+                {/* <p data-aos="fade-up" data-duration-aos="8000">
                   et PME africaines vers l'excellence opérationnelle.{" "}
-                </p>
+                  </p> */}
               </div>
             </div>
 
             <div className="md:px-5">
               <h2 className="text-lg text-sbbsYellow font-bold font-title">
-                Liens rapides
+                {t("footer.quickLinks.title")}
               </h2>
               <div className="mt-3 space-y-1 text-white">
                 <p
@@ -119,7 +148,7 @@ export default function AppLayout({ children }: ILayoutComponent) {
                   data-duration-aos="2000"
                   className="text-xs cursor-pointer hover:underline"
                 >
-                  Nos offres
+                  {t("footer.quickLinks.links.offers")}
                 </p>
 
                 <p
@@ -127,49 +156,49 @@ export default function AppLayout({ children }: ILayoutComponent) {
                   data-duration-aos="4000"
                   className="text-xs cursor-pointer hover:underline"
                 >
-                  Méthodologies
+                  {t("footer.quickLinks.links.methodologies")}
                 </p>
                 <p
                   data-aos="fade-up"
                   data-duration-aos="5000"
                   className="text-xs cursor-pointer hover:underline"
                 >
-                  Certifications
+                  {t("footer.quickLinks.links.certifications")}
                 </p>
                 <p
                   data-aos="fade-up"
                   data-duration-aos="6000"
                   className="text-xs cursor-pointer hover:underline"
                 >
-                  Communauté
+                  {t("footer.quickLinks.links.community")}
                 </p>
                 <p
                   data-aos="fade-up"
                   data-duration-aos="7000"
                   className="text-xs cursor-pointer hover:underline"
                 >
-                  Contact
+                  {t("footer.quickLinks.links.contact")}
                 </p>
                 <p
                   data-aos="fade-up"
                   data-duration-aos="8000"
                   className="text-xs cursor-pointer hover:underline"
                 >
-                  A propos
+                  {t("footer.quickLinks.links.about")}
                 </p>
                 <p
                   data-aos="fade-up"
                   data-duration-aos="9000"
                   className="text-xs cursor-pointer hover:underline"
                 >
-                  Blog
+                  {t("footer.quickLinks.links.blog")}
                 </p>
               </div>
             </div>
 
             <div className="md:px-5">
               <h2 className="text-lg text-sbbsYellow font-bold font-title">
-                Contacts
+                {t("footer.contact.title")}
               </h2>
 
               <div className="mt-3 space-y-1 text-white">
@@ -205,21 +234,23 @@ export default function AppLayout({ children }: ILayoutComponent) {
 
         {/* <div>
           <button>Scroller </button>
-        </div> */}
+          </div> */}
 
         {/* <div className="flex items-center justify-end mr-5 pb-4">
           <p className="text-sm text-white font-bold  mr-2">Powered By</p>
           <img src={sbbsLogo} alt="" className="w-10 h-10 rounded-full" />
-        </div> */}
+          </div> */}
 
         <div className="mr-5 mb-5 pt-10 relative flex items-center justify-end">
           <div className="absolute bottom-0">
             <div className="w-full">
               <h1 className="text-lg font-bold text-sbbsYellow">
-                Souscrivez à notrre newsletter
+                {t("footer.newsletter.title")}
               </h1>
               <div className="relative">
                 <input
+                  value={inputsValue}
+                  onChange={(e) => setInputValue(e.target.value)}
                   type="text"
                   placeholder="kouadio@gmail.com"
                   className="px-2 py-3 rounded-md w-80 text-sm text-gray-800 "
@@ -233,7 +264,7 @@ export default function AppLayout({ children }: ILayoutComponent) {
                       <ButtonLoader />
                     </span>
                   ) : (
-                    "Souscrire"
+                    <span>{t("footer.newsletter.button")}</span>
                   )}
                 </span>
               </div>
@@ -243,7 +274,7 @@ export default function AppLayout({ children }: ILayoutComponent) {
 
         <div className=" py-4 flex flex-wrap items-center justify-center border-t border-t-sbbsBlue gap-3">
           <p className="text-xs text-white font-medium font-pragraph">
-            © 2025 SBBS Consulting. Tous droits réservés.
+            {t("footer.copyright")}
           </p>
         </div>
       </div>
@@ -253,12 +284,20 @@ export default function AppLayout({ children }: ILayoutComponent) {
         open={openDrawer}
         anchor={"right"}
         onClose={() => setOpenDrawer(false)}
+        PaperProps={{
+          sx: {
+            width: {
+              xs: "100%",
+              sm: 350,
+            },
+          },
+        }}
       >
-        <div className="w-[350px]">
+        <div className="">
           <div className=" flex items-center justify-between px-4 mt-2">
             <div className="cursor-pointer">
               <a href="/">
-                <img src={sbbsLogo} alt="" className="w-14 h-14" />
+                <img src={sbbsLogo} alt="" className="w-44 h-14" />
               </a>
             </div>
 
@@ -286,7 +325,7 @@ export default function AppLayout({ children }: ILayoutComponent) {
                   }
                   onClick={() => setOpenDrawer(false)}
                 >
-                  {item.icon} {item.label}
+                  {item.icon} {t(item.label)}
                 </NavLink>
               ))}
             </div>

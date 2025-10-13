@@ -13,50 +13,50 @@ import type { INavBarLinks } from "../Models/Interfaces/navBarLinks";
 export const navBarElement: INavBarLinks[] = [
   {
     id: 1,
-    label: "Acceuil",
+    label: "navbar.home",
     linkTo: "/",
     icon: <Home className="w-5 h-5" />,
   },
   {
     id: 2,
-    label: "Nos offres",
+    label: "navbar.offers",
     linkTo: "/nos-offres",
     icon: <Gift className="w-5 h-5" />,
   },
-  //Todo / add Home page
+
   {
     id: 3,
-    label: "Méthodologies",
+    label: "navbar.methods",
     linkTo: "/methodologies",
     icon: <Lightbulb className="w-5 h-5" />,
   },
   {
     id: 4,
-    label: "Certifications",
+    label: "navbar.certifications",
     linkTo: "/certifications",
     icon: <Award className="w-5 h-5" />,
   },
   {
     id: 5,
-    label: "Communauté",
+    label: "navbar.community",
     linkTo: "/communaute",
     icon: <Users className="w-5 h-5" />,
   },
   {
     id: 6,
-    label: "Contact",
+    label: "navbar.contact",
     linkTo: "/contact",
     icon: <Mail className="w-5 h-5" />,
   },
   {
     id: 7,
-    label: "A propos",
+    label: "navbar.about",
     linkTo: "/a-propos-de-nous",
     icon: <Info className="w-5 h-5" />,
   },
   {
     id: 8,
-    label: "Blog",
+    label: "navbar.blog",
     linkTo: "/blog",
     icon: <Newspaper className="w-5 h-5" />,
   },

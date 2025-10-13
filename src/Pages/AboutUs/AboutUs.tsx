@@ -7,33 +7,32 @@ import type {
   ITimelineItem,
 } from "../../Models/Interfaces/About-us/about";
 import structuration from "../../Asset/Icons/Structuration.png";
-
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function AboutUs() {
+  const { t } = useTranslation();
+
   const aboutUsFeatures: IAboutUsFeature[] = [
     {
       id: 1,
       icon: structuration,
-      title: "Notre Mission",
-      description:
-        "Structurer et transformer les TPE/PME africaines en entreprises performantes, rentables et autonomes. Nous créons les champions économiques de demain en fournissant les outils, méthodes et accompagnement nécessaires à leur croissance durable.",
+      title: t("aboutus.ourMission.card1.tiltle"),
+      description: t("aboutus.ourMission.card1.description"),
     },
     {
       id: 2,
       icon: ourVision,
-      title: "Notre Vision",
-      description:
-        "Devenir le partenaire de référence pour la transformation des entreprises en Afrique. Nous aspirons à créer un écosystème entrepreneurial africain structuré, innovant et compétitif sur la scène internationale.",
+      title: t("aboutus.ourMission.card2.tiltle"),
+      description: t("aboutus.ourMission.card2.description"),
     },
     {
       id: 3,
       icon: ourADN,
-      title: "Notre ADN",
-      description:
-        "Excellence, Impact et Proximité. Nous combinons rigueur méthodologique et compréhension profonde des réalités africaines pour délivrer des résultats tangibles et mesurables à chaque entreprise accompagnée.",
+      title: t("aboutus.ourMission.card3.tiltle"),
+      description: t("aboutus.ourMission.card3.description"),
     },
   ];
 
@@ -44,15 +43,13 @@ export default function AboutUs() {
   const timelines: ITimelineItem[] = [
     {
       year: "2018",
-      title: "La genèse",
-      description:
-        "Création du Groupe SBBS avec une vision claire : accompagner les entreprises africaines. Premiers accompagnements d’entreprises en Côte d’Ivoire.",
+      title: t("aboutus.careerPath.card1.tiltle"),
+      description: t("aboutus.careerPath.card1.description"),
     },
     {
       year: "2020",
-      title: "Expansion Régionale",
-      description:
-        "Ouverture des bureaux au Bénin et au Togo. Déploiement de la méthodologie SYSTEMA adaptée au contexte africain.",
+      title: t("aboutus.careerPath.card2.tiltle"),
+      description: t("aboutus.careerPath.card2.description"),
     },
   ];
 
@@ -63,44 +60,38 @@ export default function AboutUs() {
     {
       id: 1,
       name: "Dr. Dramane Konaté",
-      role: "Fondateur & CEO",
-      description:
-        "Visionnaire de l’entrepreneuriat africain. Avec plus de 20 années d’expérience, il a su élaborer des stratégies de transformation innovantes et concrètes.",
+      role: t("aboutus.teams.card1.function"),
+      description: t("aboutus.teams.card1.description"),
     },
     {
       id: 2,
       name: "Dr. Dramane Konaté",
-      role: "Fondateur & CEO",
-      description:
-        "Visionnaire de l’entrepreneuriat africain. Avec plus de 20 années d’expérience, il a su élaborer des stratégies de transformation innovantes et concrètes.",
+      role: t("aboutus.teams.card1.function"),
+      description: t("aboutus.teams.card1.description"),
     },
     {
       id: 3,
       name: "Dr. Dramane Konaté",
-      role: "Fondateur & CEO",
-      description:
-        "Visionnaire de l’entrepreneuriat africain. Avec plus de 20 années d’expérience, il a su élaborer des stratégies de transformation innovantes et concrètes.",
+      role: t("aboutus.teams.card1.function"),
+      description: t("aboutus.teams.card1.description"),
     },
     {
       id: 4,
       name: "Dr. Dramane Konaté",
-      role: "Fondateur & CEO",
-      description:
-        "Visionnaire de l’entrepreneuriat africain. Avec plus de 20 années d’expérience, il a su élaborer des stratégies de transformation innovantes et concrètes.",
+      role: t("aboutus.teams.card1.function"),
+      description: t("aboutus.teams.card1.description"),
     },
     {
       id: 5,
       name: "Dr. Dramane Konaté",
-      role: "Fondateur & CEO",
-      description:
-        "Visionnaire de l’entrepreneuriat africain. Avec plus de 20 années d’expérience, il a su élaborer des stratégies de transformation innovantes et concrètes.",
+      role: t("aboutus.teams.card1.function"),
+      description: t("aboutus.teams.card1.description"),
     },
     {
       id: 6,
       name: "Dr. Dramane Konaté",
-      role: "Fondateur & CEO",
-      description:
-        "Visionnaire de l’entrepreneuriat africain. Avec plus de 20 années d’expérience, il a su élaborer des stratégies de transformation innovantes et concrètes.",
+      role: t("aboutus.teams.card1.function"),
+      description: t("aboutus.teams.card1.description"),
     },
   ];
 
@@ -119,7 +110,7 @@ export default function AboutUs() {
       <img
         src={homeBg}
         alt=""
-        className="absolute sbbs-bg inset-0 h-[400px] md:h-[500px] w-full object-cover"
+        className="absolute  inset-0 h-[400px] md:h-[500px] w-full object-cover"
       />
       {/* Content above  */}
       <div className="relative z-10 h-full w-full flex items-center justify-center px-4">
@@ -128,24 +119,21 @@ export default function AboutUs() {
             data-aos="zoom-in"
             className="pt-10 text-white font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
           >
-            Notre Histoire, Notre Mission
+            {t("aboutus.hero.title")}
           </h1>
 
           <p
             data-aos="zoom-in"
             className="mt-4 text-sbbsYellow text-xs sm:text-sm md:text-base"
           >
-            Bâtisseurs d'Excellence Entrepreneuriale en Afrique
+            {t("aboutus.hero.shortText")}
           </p>
 
           <p
             data-aos="zoom-in"
             className="mt-4 text-gray-200 text-xs sm:text-sm md:text-base"
           >
-            Depuis notre création, nous accompagnons les TPE et PME africaines
-            dans leur transformation vers l'excellence opérationnelle. Notre
-            approche unique combine expertise locale et standards internationaux
-            pour créer des entreprises durables et performantes
+            {t("aboutus.hero.subtitle")}
           </p>
         </div>
       </div>
@@ -157,7 +145,9 @@ export default function AboutUs() {
             <div className="max-w-8 mx-auto">
               <h1 className="font-extrabold text-lg md:text-xl">15</h1>
             </div>
-            <p className="text-center text-lg font-bold">Années d’expérience</p>
+            <p className="text-center text-lg font-bold">
+              {t("aboutus.hero.btn.btn1")}
+            </p>
           </div>
           {/*   Entreprises transformées */}
           <div data-aos="zoom-in" className="text-sbbsBlue">
@@ -165,7 +155,7 @@ export default function AboutUs() {
               <h1 className="font-extrabold text-lg md:text-xl">300</h1>
             </div>
             <p className="text-center text-lg font-bold">
-              Entreprises transformées
+              {t("aboutus.hero.btn.btn2")}
             </p>
           </div>
           {/* Consultants experts*/}
@@ -173,14 +163,18 @@ export default function AboutUs() {
             <div className="max-w-8 mx-auto">
               <h1 className="font-extrabold text-lg md:text-xl">50</h1>
             </div>
-            <p className="text-center text-lg font-bold">Consultants experts</p>
+            <p className="text-center text-lg font-bold">
+              {t("aboutus.hero.btn.btn3")}
+            </p>
           </div>
           {/* Villes couvertes */}
           <div data-aos="zoom-in" className="text-sbbsBlue">
             <div className="max-w-8 mx-auto">
               <h1 className="font-extrabold text-lg md:text-xl">18</h1>
             </div>
-            <p className="text-center text-lg font-bold">Villes couvertes</p>
+            <p className="text-center text-lg font-bold">
+              {t("aboutus.hero.btn.btn4")}
+            </p>
           </div>
         </div>
       </div>
@@ -224,14 +218,14 @@ export default function AboutUs() {
               data-aos="zoom-in"
               className="text-sbbsBlue font-extrabold leading-snug text-xl sm:text-3xl md:text-4xl"
             >
-              Notre parcours
+              {t("aboutus.careerPath.title")}
             </h1>
 
             <p
               data-aos="zoom-in"
               className="mt-1 text-sbbsGrayLight text-xs sm:text-sm md:text-base"
             >
-              Les étapes clés qui ont façonné SBBS Consulting
+              {t("aboutus.careerPath.subtiltle")}
             </p>
           </div>
         </div>
@@ -279,10 +273,10 @@ export default function AboutUs() {
             data-aos="zoom-in"
             className="text-center text-2xl md:text-3xl font-bold text-sbbsBlue mb-2"
           >
-            Notre équipe d’experts
+            {t("aboutus.teams.title")}
           </h2>
           <p data-aos="zoom-in" className="text-center text-gray-600 mb-8">
-            Des consultants passionnés au service de votre croissance
+            {t("aboutus.teams.subtilte")}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-5">
@@ -316,7 +310,7 @@ export default function AboutUs() {
             data-duration-aos="4000"
             className="pt-10 text-center text-white font-extrabold leading-snug text-2xl sm:text-3xl md:text-4xl"
           >
-            Rejoignez la Communauté SBBS
+            {t("aboutus.omegaBusiness.title")}
           </h1>
 
           <div className="max-w-2xl items-center justify-center ">
@@ -325,8 +319,7 @@ export default function AboutUs() {
               data-duration-aos="5000"
               className="mt-4 text-center text-gray-200 text-xs sm:text-sm md:text-base"
             >
-              Faites partie d'un réseau d'entrepreneurs ambitieux <br /> qui
-              transforment l'économie africaine
+              {t("aboutus.omegaBusiness.subtitle")}
             </p>
           </div>
 
@@ -336,7 +329,7 @@ export default function AboutUs() {
               data-duration-aos="7000"
               className="bg-sbbsYellow text-black font-bold text-sm md:text-base w-fit h-10 rounded-full shadow-md hover:opacity-90 transition px-4"
             >
-              Découvrir Omega Business
+              {t("aboutus.omegaBusiness.btn")}
             </button>
           </div>
         </div>

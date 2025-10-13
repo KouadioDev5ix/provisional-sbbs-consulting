@@ -1,0 +1,701 @@
+{
+  "navbar": {
+    "home": "Home",
+    "offers": "Our Offers",
+    "methods": "Methodologies",
+    "certifications": "Certifications",
+    "community": "Community",
+    "contact": "Contact",
+    "about": "About us",
+    "blog": "Blog"
+  },
+
+  "home": {
+    "hero": {
+      "title": "From survival to mastery, transform your business into a growth machine",
+      "description": "SBBS Consulting supports African SMEs in achieving operational excellence, sustainable performance, and strategic autonomy.",
+      "cta": "Request a free diagnosis"
+    },
+    "pillars": {
+      "title": "Our 3 fundamental pillars",
+      "subtitle": "A complete approach to transform your business",
+      "structuration": {
+        "title": "Structuring",
+        "text": "Implementation of solid processes, efficient management tools, and clear organization to build lasting foundations."
+      },
+      "performance": {
+        "title": "Performance",
+        "text": "Optimization of operations, productivity improvement, and control of financial results to maximize your outcomes."
+      },
+      "growth": {
+        "title": "Growth",
+        "text": "Business development, strategic expansion, and access to new markets to elevate your company to new heights."
+      }
+    },
+    "testimonials": {
+      "title": "What our clients say about us",
+      "subtitle": "Discover our clients' success stories",
+      "sample": {
+        "author": "Kouadio Diallo",
+        "position": "CEO, Techwave CI",
+        "quote": "SBBS Consulting completely transformed our organization. In a very short time, we doubled our revenue and strengthened our processes."
+      }
+    },
+    "partners": {
+      "title": "Our partners and awards"
+    },
+    "ctaSection": {
+      "title": "Ready to transform your business?",
+      "subtitle": "Join hundreds of entrepreneurs who chose excellence",
+      "cta": "Start your free diagnosis"
+    },
+    "modal": {
+      "title": "Request a diagnosis",
+      "fields": {
+        "lastName": "Last Name",
+        "firstName": "First Name",
+        "profession": "Profession",
+        "number": "Phone Number",
+        "mail": "Email address"
+      },
+      "placeholders": {
+        "lastName": "Ex: Kouadio",
+        "firstName": "Ex: Alfred Kouadio",
+        "profession": "Entrepreneur",
+        "number": "Ex: 05 85 13 22 12",
+        "mail": "Ex: kouadio@gmail.com"
+      },
+      "buttons": {
+        "submit": "Submit",
+        "cancel": "Cancel"
+      },
+      "errors": {
+        "allRequired": "All fields are required!",
+        "unknown": "An error occurred"
+      }
+    }
+  },
+  "offers": {
+    "hero": {
+      "title": "Transform your business with our tailor-made solutions",
+      "subtitle": "Comprehensive offers to structure, optimize, and accelerate your growth"
+    },
+    "pack": {
+      "title": "Our Flagship Pack",
+      "subtitle": "The complete solution to transform your business in 12 months",
+      "Systema": "Systema Pack + Vending Machine",
+      "SystemaSubtitle": "The ultimate support for your growth",
+      "cta": "Request a personalized quote",
+      "features": [
+        "Complete diagnostic of your company",
+        "12-month personalized action plan",
+        "Implementation of the SYSTEMA framework",
+        "Setup of the Sales Machine",
+        "Comprehensive team training"
+      ]
+    },
+    "modules": {
+      "title": "Modules included in the pack",
+      "A": {
+        "title": "Structuring",
+        "description": "Processes, organization chart, job sheets, procedure manual"
+      },
+      "B": {
+        "title": "Finance & Management",
+        "description": "Dashboard, KPIs, cash flow management, profitability"
+      },
+
+      "C": {
+        "title": "Sales",
+        "description": "Sales strategy, pipeline, scripts, closing techniques"
+      },
+      "D": {
+        "title": "Digital & Marketing",
+        "description": "CRM, automation, online presence, lead generation"
+      }
+    },
+    "services": {
+      "title": "Additional Services",
+      "subtitle": "Enhance your transformation with our add-on modules",
+      "erp": {
+        "title": "Light ERP",
+        "desc": "Integrated management solution for African SMEs. Manage your inventory, invoices, and accounting in one place.",
+        "price": "From 50,000 FCFA/month"
+      },
+      "marketing": {
+        "title": "Marketing Automation",
+        "desc": "Optimize operations and productivity to maximize your results.",
+        "price": "From 75,000 FCFA/month"
+      },
+      "crm": {
+        "title": "CRM Premium",
+        "desc": "Commercial development and strategic expansion into new markets.",
+        "price": "From 50,000 FCFA/month"
+      },
+      "training": {
+        "title": "Continuous Training",
+        "desc": "Customized training programs to strengthen your team’s skills.",
+        "price": "Custom pricing"
+      }
+    },
+    "compare": {
+      "title": "Compare our offers",
+      "subtitle": "Choose the plan that fits your needs and budget",
+      "recommended": "Recommend",
+      "tableTitle": {
+        "features": "Features",
+        "starter": "Starter",
+        "completePack": "Complete Pack",
+        "premium": "Premium"
+      },
+      "TableBody": {
+        "name1": "Initial Diagnosis",
+        "name2": "Personalized Action Plan",
+        "name3": "SYSTEMA Framework",
+        "name4": "Sales Machine",
+        "name5": "Team Training",
+        "name6": "Consultant Follow-up",
+        "name7": "SBBS Certification"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know about our offers",
+      "Accordion": {
+        "Question1": {
+          "title": "How does the initial diagnosis take place?",
+          "content": "The initial diagnosis takes place over 2 weeks and includes: an in-depth document analysis, interviews with management and key team members, observation of current processes, and an evaluation of existing tools and systems."
+        },
+        "Question2": {
+          "title": "What is the difference between SYSTEMA and the Sales Machine?",
+          "content": "The initial diagnosis takes place over 2 weeks and includes: an in-depth document analysis, interviews with management and key team members, observation of current processes, and an evaluation of existing tools and systems."
+        },
+        "Question3": {
+          "title": "How are the training sessions for our teams organized?",
+          "content": "The initial diagnosis takes place over 2 weeks and includes: an in-depth document analysis, interviews with management and key team members, observation of current processes, and an evaluation of existing tools and systems."
+        },
+        "Question4": {
+          "title": "What are the payment terms?",
+          "content": "The initial diagnosis takes place over 2 weeks and includes: an in-depth document analysis, interviews with management and key team members, observation of current processes, and an evaluation of existing tools and systems."
+        },
+        "Question5": {
+          "title": "What happens after the 12 months of support?",
+          "content": "The initial diagnosis takes place over 2 weeks and includes: an in-depth document analysis, interviews with management and key team members, observation of current processes, and an evaluation of existing tools and systems."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to take action?",
+      "subtitle": "Start your transformation today with a free diagnostic",
+      "btn": "Request a free quote"
+    },
+    "form": {
+      "title": "Quote Request",
+      "labels": {
+        "lastName": "Last Name",
+        "firstName": "First Name",
+        "profession": "Profession",
+        "number": "Phone Number",
+        "mail": "Email Address"
+      },
+      "actions": {
+        "validate": "Submit",
+        "cancel": "Cancel"
+      },
+      "error": "Please fill in all required fields!"
+    }
+  },
+
+  "methodologie": {
+    "hero": {
+      "title": "A Proven Methodology",
+      "littleText": "Measurable and Sustainable Results",
+      "subtitle": "Our structured approach combines methodological rigor and hands-on pragmatism to sustainably transform your business. Discover how we've helped more than 500 companies achieve operational excellence.."
+    },
+    "fourTransformationStep": {
+      "title": "The 4 stages of your transformation",
+      "subtilte": "A structured and progressive path towards excellence",
+      "steps": {
+        "diagnostic": {
+          "title": "Diagnosis",
+          "period": "2 weeks",
+          "description": "A complete analysis of your current digital ecosystem, identifying improvement opportunities and growth potential."
+        },
+        "actionplan": {
+          "title": "Action Plan",
+          "period": "1 week",
+          "description": "Development of a personalized roadmap, validation of objectives, and scheduling of actions."
+        },
+        "implementation": {
+          "title": "Implementation",
+          "period": "10 months",
+          "description": "Progressive deployment of solutions, team training, close monitoring, and necessary adjustments."
+        },
+        "certification": {
+          "title": "Certification",
+          "period": "2 weeks",
+          "description": "Final evaluation, awarding of the SBBS mention, and integration into the elite Business community."
+        }
+      }
+    },
+    "successStories": [
+      {
+        "company": "Techninnov CI",
+        "sector": "Sector: Technology - 50 employees",
+        "metrics": {
+          "revenue": { "value": "+120%", "label": "Revenue" },
+          "costs": { "value": "-45%", "label": "Operational Costs" }
+        },
+        "productivity": { "value": "85%", "label": "Productivity" },
+        "satisfaction": { "value": "95%", "label": "Customer Satisfaction" },
+        "rating": "SBBS-2",
+        "ratingColor": "blue",
+        "testimonial": "SBBS Consulting transformed our way of working. We now have clear processes and a motivated team that understands its added value in our markets."
+      },
+      {
+        "company": "AgroPlus Benin",
+        "sector": "Sector: Agri-food - 30 employees",
+        "metrics": {
+          "revenue": { "value": "+120%", "label": "Revenue" },
+          "costs": { "value": "-45%", "label": "Operational Costs" }
+        },
+        "productivity": { "value": "90%", "label": "Productivity" },
+        "satisfaction": { "value": "98%", "label": "Customer Satisfaction" },
+        "rating": "SBBS-5",
+        "ratingColor": "yellow",
+        "testimonial": "SBBS Consulting transformed our way of working. We now have clear processes and a motivated team that understands its added value in our markets."
+      },
+      {
+        "company": "LogisTrans Ghana",
+        "sector": "Sector: Logistics - 75 employees",
+        "metrics": {
+          "revenue": { "value": "+120%", "label": "Revenue" },
+          "costs": { "value": "-45%", "label": "Operational Costs" }
+        },
+        "productivity": { "value": "88%", "label": "Productivity" },
+        "satisfaction": { "value": "92%", "label": "Customer Satisfaction" },
+        "rating": "SBBS-5",
+        "ratingColor": "yellow",
+        "testimonial": "SBBS Consulting transformed our way of working. We now have clear processes and a motivated team that understands its added value in our markets."
+      }
+    ],
+    "historiesSucces": {
+      "title": "Success Stories",
+      "subtilte": "Concrete and measurable transformations"
+    },
+    "videoTestimony": {
+      "title": "Video testimonials",
+      "subtilte": "Measurable and Sustainable Results"
+    },
+    "video": {
+      "title": "Agro-Africa:",
+      "subtilte": "SBBS - has been a springboard for our growth"
+    },
+    "averageResult": {
+      "title": "Average results observed",
+      "subtilte": "On all of our supported clients",
+      "card1": "Average revenue growth over 12 months",
+      "card2": "Optimization of operational costs",
+      "card3": "Improved overall efficiency",
+
+      "card4": {
+        "month": "6 month",
+        "description": "Return on investment of support"
+      }
+    },
+    "maturityLevel": {
+      "title": "Assess your maturity level",
+      "subtitle": "Find out your current SBBS score and identify your priority areas for improvement in less than 5 minutes",
+      "btn": "Launch the free simulator"
+    }
+  },
+  "certification": {
+    "hero": {
+      "title": "SBBS Certification & Rating",
+      "shortText": "Recognizing entrepreneurial excellence",
+      "subtitle": "Our certification system assesses and highlights your company’s level of organizational maturity. Join the elite network of SBBS-certified companies and stand out in your market.",
+      "btn": {
+        "btn1": "Recognized certification",
+        "btn2": "6 levels of excellence",
+        "btn3": "Objective evaluation"
+      }
+    },
+    "evaluationSystem": {
+      "title": "A Comprehensive Evaluation System",
+      "subtitle": "The SBBS rating is more than just a score: it is a management and valuation tool for your business."
+    },
+    "certificationSBBS": {
+      "title": "Why Obtain SBBS Certification?",
+      "subtitle": "The SBBS certification is an objective reflection of your company’s organizational maturity. It evaluates your performance across six key dimensions and positions you on a scale recognized by the African entrepreneurial ecosystem.",
+      "fearturesListes": [
+        "Increased credibility with partners and investors",
+        "Objective benchmarking with companies in your sector",
+        "Clear identification of improvement areas",
+        "Badge and certificate to display on your communication materials",
+        "Exclusive access to the Omega Business community"
+      ],
+      "levelsOfCertification": {
+        "title": "The 6 Certification Levels",
+        "subtitle": "Each level represents a stage of organizational maturity"
+      },
+      "levels1": {
+        "title": "SBBS-1 Alert",
+        "description": "Global dysfunction requiring urgent intervention"
+      },
+      "levels2": {
+        "title": "SBBS-2 Precarious",
+        "description": "Significant risks, fragile structure to be consolidated"
+      },
+      "levels3": {
+        "title": "SBBS-3 Functional",
+        "description": "Organizational fragility, foundations to be strengthened"
+      },
+      "levels4": {
+        "title": "SBBS-4 Structured",
+        "description": "Average structuring, growth potential"
+      },
+      "levels5": {
+        "title": "SBBS-5 Advanced",
+        "description": "Advanced maturity, confirmed performance"
+      },
+      "levels6": {
+        "title": "SBBS-6 Elite",
+        "description": "Strong and autonomous company, recognized excellence"
+      }
+    },
+    "criteria": {
+      "tableHead": {
+        "evaluationCriteria": "Evaluation Criteria",
+        "Weighting": "Weighting",
+        "keyIndicators": "Key Indicators"
+      },
+      "tableBody": {
+        "A": {
+          "criteria": "Organization & Governance",
+          "indicators": "Organizational chart, documented processes, role distribution"
+        },
+        "B": {
+          "criteria": "Financial Management",
+          "indicators": "Accounting, cash flow, profitability, dashboards"
+        },
+        "C": {
+          "criteria": "Commercial Performance",
+          "indicators": "Sales pipeline, conversion rate, customer satisfaction"
+        },
+        "D": {
+          "criteria": "Human Resources",
+          "indicators": "Skills, training, motivation, turnover"
+        },
+        "E": {
+          "criteria": "Innovation & Digital",
+          "indicators": "Digital tools, automation, product innovation"
+        },
+        "F": {
+          "criteria": "Compliance & Quality",
+          "indicators": "Standards compliance, certifications, quality control"
+        }
+      }
+    },
+    "ratingSimulator": {
+      "title": "Rating Simulator",
+      "subtitle": "Each level represents a stage of organizational maturity"
+    },
+
+    "questionSection": {
+      "Answer": {
+        "no": "No",
+        "inPart": "Partially",
+        "yes": "Yes"
+      },
+      "questions": {
+        "q1": {
+          "text": "Do you have a clear organizational chart and defined job descriptions?",
+          "category": "Organization & Structure"
+        },
+        "q2": {
+          "text": "Are your key processes documented and optimized?",
+          "category": "Organization & Structure"
+        },
+        "q3": {
+          "text": "Do you have up-to-date financial dashboards?",
+          "category": "Financial Management"
+        },
+        "q4": {
+          "text": "Do you have up-to-date commercial dashboards?",
+          "category": "Business Performance"
+        }
+      },
+      "calculate": {
+        "btn": "Calculate my SBBS score"
+      },
+      "resultPrefix": "Your score: "
+    },
+
+    "Testymonial": {
+      "titlte": "They Progressed with SBBS",
+      "subtitle": "Discover the certification journeys of our clients",
+      "card1": {
+        "compagnieName": "TechInnov CI",
+        "sector": "Sector: Technology - 25 employees",
+        "description": "The SBBS certification opened new doors for us. Our partners now have full confidence in our ability to deliver. It’s a true game-changer for our credibility."
+      }
+    },
+    "downloadOfficialGrid": {
+      "titlte": "Download the Official Grid",
+      "subtitle": "Get the complete SBBS evaluation grid with all detailed criteria and prepare your certification.",
+      "btn": "Download the PDF grid"
+    }
+  },
+
+  "community": {
+    "hero": {
+      "title": "Omega Business Community",
+      "shortText": "The network of excellence for SBBS entrepreneurs",
+      "subtitle": "Join a dynamic ecosystem of certified entrepreneurs who share, grow, and succeed together. More than a community, it’s your growth accelerator.",
+      "btn": {
+        "btn1": "+ Active members",
+        "btn2": "+ Events per year",
+        "btn3": "+ Business generated",
+        "btn4": "Countries represented"
+      }
+    },
+    "omegaBusiness": {
+      "title": "Discover Omega Business",
+      "subtitle": "An exclusive community where certified SBBS entrepreneurs meet to share experiences, build synergies, and accelerate their growth.",
+      "omegaBusinessFeatures": [
+        "High-level networking between leaders",
+        "Continuous training and exclusive masterclasses",
+        "Business opportunities and partnerships",
+        "Mentorship and experience sharing"
+      ],
+      "video": {
+        "title": "Discover a strong community to boost your growth"
+      }
+    },
+    "communityBenefits": {
+      "title": "Community Benefits",
+      "subtitle": "A complete ecosystem for your continuous growth",
+      "levels1": {
+        "label": "Premium Networking",
+        "description": "Connect with ambitious entrepreneurs and create lasting business synergies."
+      },
+      "levels2": {
+        "label": "Continuous Training",
+        "description": "Stay ahead with training and masterclasses led by experts."
+      },
+      "levels3": {
+        "label": "Business Opportunities",
+        "description": "Grow your revenue through opportunities shared within the community."
+      },
+      "levels4": {
+        "label": "Acceleration & Mentorship",
+        "description": "Benefit from the experience of senior members and speed up your development."
+      },
+      "levels5": {
+        "label": "International Reach",
+        "description": "Expand your influence beyond borders with our pan-African network."
+      },
+      "levels6": {
+        "label": "Exclusive Privileges",
+        "description": "Access negotiated advantages and preferential rates."
+      }
+    },
+    "calendarEvents": {
+      "title": "Events Calendar",
+      "subtitle": "Don’t miss any growth or networking opportunity",
+      "categories": {
+        "all": "All",
+        "networking": "Networking",
+        "training": "Training",
+        "business": "Business"
+      }
+    },
+    "entrepreneurialElite": {
+      "title": "Discover the Entrepreneurial Elite",
+      "subtitle": "Join an exclusive network that propels your success",
+      "compagnie": {
+        "compagnieName": "BC Inc Companies",
+        "descripton": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Let's Talk About Your Project",
+      "subtitle": "Our team is ready to help transform your business. Contact us for a free and personalized diagnostic."
+    },
+    "form": {
+      "title": "Request Your Free Diagnostic",
+      "subtitle": "Fill out the form below and a consultant will contact you within 24 hours",
+      "fields": {
+        "fullName": {
+          "label": "Full Name",
+          "placeholder": "John Doe"
+        },
+        "company": {
+          "label": "Company",
+          "placeholder": "Youra Enterprise.inCx"
+        },
+        "phone": {
+          "label": "Phone",
+          "placeholder": "+1 234 567 890"
+        },
+        "sector": {
+          "label": "Industry Sector",
+          "placeholder": "Information Technology"
+        },
+        "typeOfRequest": {
+          "label": "Request Type",
+          "options": {
+            "diagnostic": "Free Diagnostic",
+            "quote": "Quote Request",
+            "info": "General Information",
+            "partnership": "Partnership"
+          }
+        },
+        "message": {
+          "label": "Your Message",
+          "placeholder": "I would like to..."
+        }
+      },
+      "submit": "Submit Request",
+      "errors": {
+        "emptyFields": "Please fill in all the fields!",
+        "default": "An error occurred"
+      },
+      "success": "Your request has been sent successfully."
+    },
+    "contactInfo": {
+      "title": "Contact Us Directly",
+      "phone": "Phone",
+      "email": "Email",
+      "whatsapp": "Whatsapp"
+    },
+    "regionalOffice": {
+      "title": "Regional Offices",
+      "addressLabel": "Address",
+      "address": "Abidjan, Cocody - Carrefour Affi"
+    },
+    "map": {
+      "title": "Our Locations"
+    }
+  },
+
+  "aboutus": {
+    "hero": {
+      "title": "Our Story, Our Mission",
+      "shortText": "Builders of Entrepreneurial Excellence in Africa",
+      "subtitle": "Since our creation, we have been supporting African SMEs and startups in their transformation toward operational excellence. Our unique approach combines local expertise with international standards to create sustainable and high-performing businesses.",
+      "btn": {
+        "btn1": "Years of Experience",
+        "btn2": "Businesses Transformed",
+        "btn3": "Expert Consultants",
+        "btn4": "Cities Covered"
+      }
+    },
+
+    "ourMission": {
+      "card1": {
+        "tiltle": "Our Mission",
+        "description": "To structure and transform African SMEs into high-performing, profitable, and autonomous businesses. We build tomorrow’s economic champions by providing the tools, methods, and guidance necessary for sustainable growth."
+      },
+      "card2": {
+        "tiltle": "Our Vision",
+        "description": "To become the leading partner for business transformation in Africa. We aim to build a structured, innovative, and competitive African entrepreneurial ecosystem on the international stage."
+      },
+      "card3": {
+        "tiltle": "Our DNA",
+        "description": "Excellence, Impact, and Proximity. We combine methodological rigor with a deep understanding of African realities to deliver tangible and measurable results to every business we support."
+      }
+    },
+
+    "careerPath": {
+      "title": "Our Journey",
+      "subtiltle": "The key milestones that shaped SBBS Consulting",
+      "card1": {
+        "tiltle": "The Genesis",
+        "description": "Creation of the SBBS Group with a clear vision: to support African businesses. First corporate consulting projects launched in Côte d'Ivoire."
+      },
+      "card2": {
+        "tiltle": "Regional Expansion",
+        "description": "Opening of offices in Benin and Togo. Deployment of the SYSTEMA methodology, adapted to the African business context."
+      }
+    },
+
+    "teams": {
+      "title": "Our Expert Team",
+      "subtilte": "Passionate consultants dedicated to your business growth",
+      "card1": {
+        "function": "Founder & CEO",
+        "description": "A visionary of African entrepreneurship. With over 20 years of experience, he has developed innovative and practical business transformation strategies."
+      }
+    },
+
+    "omegaBusiness": {
+      "title": "Join the SBBS Community",
+      "subtitle": "Be part of a network of ambitious entrepreneurs transforming Africa’s economy",
+      "btn": "Discover Omega Business"
+    }
+  },
+  "blog": {
+    "hero": {
+      "title": "Discover our articles on business structuring, sales, marketing, and automation.",
+      "shortText": "Our articles, guides, and case studies to help you transform your business",
+      "Article": {
+        "title": "Our latest articles and a few conference videos"
+      }
+    },
+    "articles": {
+      "card1": {
+        "date": "July 20, 2025",
+        "tiltle": "Sed do eiusmod tempor incididunt",
+        "description": "There are many variations of passages of Lorem Ipsum available, but most have undergone some form of alteration, such as injected humor or random words that don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, make sure there isn’t anything embarrassing hidden in the middle of the text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words combined with a handful of model sentence structures to generate reasonable-looking Lorem Ipsum. The generated Lorem Ipsum is therefore always free from repetitions, injected humor, or non-characteristic words."
+      },
+      "card2": {
+        "date": "July 20, 2025",
+        "tiltle": "Sed do eiusmod tempor incididunt",
+        "description": "There are many variations of passages of Lorem Ipsum available, but most have undergone some form of alteration, such as injected humor or random words that don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, make sure there isn’t anything embarrassing hidden in the middle of the text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words combined with a handful of model sentence structures to generate reasonable-looking Lorem Ipsum. The generated Lorem Ipsum is therefore always free from repetitions, injected humor, or non-characteristic words."
+      },
+      "card3": {
+        "date": "July 20, 2025",
+        "tiltle": "Sed do eiusmod tempor incididunt",
+        "description": "There are many variations of passages of Lorem Ipsum available, but most have undergone some form of alteration, such as injected humor or random words that don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, make sure there isn’t anything embarrassing hidden in the middle of the text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words combined with a handful of model sentence structures to generate reasonable-looking Lorem Ipsum. The generated Lorem Ipsum is therefore always free from repetitions, injected humor, or non-characteristic words."
+      },
+      "card4": {
+        "date": "July 20, 2025",
+        "tiltle": "Sed do eiusmod tempor incididunt",
+        "description": "There are many variations of passages of Lorem Ipsum available, but most have undergone some form of alteration, such as injected humor or random words that don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, make sure there isn’t anything embarrassing hidden in the middle of the text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words combined with a handful of model sentence structures to generate reasonable-looking Lorem Ipsum. The generated Lorem Ipsum is therefore always free from repetitions, injected humor, or non-characteristic words."
+      }
+    },
+    "video": {
+      "title": "Conference on Business Management"
+    }
+  },
+
+  "footer": {
+    "description": "Branch of the SBBS Group dedicated to supporting African SMEs and small businesses towards operational excellence.",
+    "quickLinks": {
+      "title": "Quick Links",
+      "links": {
+        "offers": "Our Offers",
+        "methodologies": "Methodologies",
+        "certifications": "Certifications",
+        "community": "Community",
+        "contact": "Contact",
+        "about": "About Us",
+        "blog": "Blog"
+      }
+    },
+    "contact": {
+      "title": "Contacts",
+      "email": "sbbs@gmail.com",
+      "phone": "+225 07 55555540"
+    },
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "placeholder": "kouadio@gmail.com",
+      "button": "Subscribe"
+    },
+    "copyright": "© 2025 SBBS Consulting. All rights reserved."
+  }
+}
